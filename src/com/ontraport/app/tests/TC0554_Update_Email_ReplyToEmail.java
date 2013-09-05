@@ -25,14 +25,14 @@ public class TC0554_Update_Email_ReplyToEmail extends AbstractTest {
 		//calling create Email Message method here..... 
 		String msgName= createMsg.testCreate_EmailMessage();
 	
-		Message_Edit editEmail= msgList.editEmailMessage(msgName);
+		Message_Edit editEmail= msgList.editMessage(msgName);
 		Common.waitForPage(driver, 30);
 		String replyToEmail= editEmail.getReplyToEmail();
 		msgList= editEmail.editMessageReplyToEmail(newReplyToEmail);
 		msgList.setHundredRecordsPerPage();
 		boolean condition= msgList.isElementPresent(msgName);
 		AssertJUnit.assertTrue(condition);
-		editEmail= msgList.editEmailMessage(msgName);
+		editEmail= msgList.editMessage(msgName);
 		String replyToEmail1= editEmail.getReplyToEmail();
 		Assert.assertNotSame(replyToEmail, replyToEmail1);
 		Thread.sleep(2000);

@@ -24,13 +24,13 @@ public class TC0557_Update_Email_WriteOutText extends AbstractTest {
 		//calling create Email Message method here..... 
 		String msgName= createMsg.testCreate_EmailMessage();
 	
-		Message_Edit editEmail= msgList.editEmailMessage(msgName);
+		Message_Edit editEmail= msgList.editMessage(msgName);
 		String bodyText= editEmail.getTextFromFrame();
 		msgList= editEmail.editMessageBody(newBodyText);
 		msgList.setHundredRecordsPerPage();
 		boolean condition= msgList.isElementPresent(msgName);
 		AssertJUnit.assertTrue(condition);
-		editEmail= msgList.editEmailMessage(msgName);
+		editEmail= msgList.editMessage(msgName);
 		String bodyText1= editEmail.getTextFromFrame();
 		Assert.assertNotSame(bodyText, bodyText1);
 	}

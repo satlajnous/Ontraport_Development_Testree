@@ -23,13 +23,13 @@ public class TC0553_Update_Email_SendOutName extends AbstractTest {
 		//calling create Email Message method here..... 
 		String msgName= createMsg.testCreate_EmailMessage();
 	
-		Message_Edit editEmail= msgList.editEmailMessage(msgName);
+		Message_Edit editEmail= msgList.editMessage(msgName);
 		String sendOutName= editEmail.getSendOutName();
 		msgList= editEmail.editMessageSendOutName(newSendOutName);
 		msgList.setHundredRecordsPerPage();
 		boolean condition= msgList.isElementPresent(msgName);
 		AssertJUnit.assertTrue(condition);
-		editEmail= msgList.editEmailMessage(msgName);
+		editEmail= msgList.editMessage(msgName);
 		String sendOutName1= editEmail.getSendOutName();
 		Assert.assertNotSame(sendOutName, sendOutName1);
 	}

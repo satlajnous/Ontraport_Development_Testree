@@ -28,7 +28,7 @@ public class TC0600_Update_Email_InsertMergeFields extends AbstractTest{
 		//calling create Email Message method here..... 
 		String msgName= createMsg.testCreate_EmailMessage();
 		
-		Message_Edit editEmail= msgList.editEmailMessage(msgName);		
+		Message_Edit editEmail= msgList.editMessage(msgName);		
 		editEmail.editInsertMergeField(newMergeField);
 		String textMsg= editEmail.getBodyText();
 		boolean condition= textMsg.contains("["+newMergeField+"]");

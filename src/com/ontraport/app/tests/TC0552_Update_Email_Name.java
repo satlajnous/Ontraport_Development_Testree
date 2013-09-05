@@ -24,7 +24,7 @@ public class TC0552_Update_Email_Name extends AbstractTest{
 		//calling create Email Message method here..... 
 		String msgName= createMsg.testCreate_EmailMessage();
 		
-		Message_Edit editEmail= msgList.editEmailMessage(msgName);
+		Message_Edit editEmail= msgList.editMessage(msgName);
 		msgList= editEmail.editMessageName(newMsgName);
 		msgList.setHundredRecordsPerPage();
 		boolean condition= msgList.isElementPresent(newMsgName);
