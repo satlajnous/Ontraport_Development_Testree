@@ -30,31 +30,31 @@ public class LeadScoringEdit extends AbstractTest{
 		leadScoring=contact_Settings.leadScoring();
 		Common.waitForPage(driver, 30);
 		contact_ListAll=leadScoring.clearFields();
-		Common.waitForPage(driver, 30);
-		contact_ListAll.logout();
+	//	Common.waitForPage(driver, 30);
+	//	contact_ListAll.logout();
 	}
 	
-	/*@Test
+	@Test
 	public void testLeadScoring_FieldIsThisValue() throws Exception {
 		SiteMenu siteMenu = (SiteMenu) new SiteMenu().init();
 		Common.waitForPage(driver, 30);
 		siteMenu.contacts();
-		siteMenu.contactSettings();
+		siteMenu.contact_Settings();
 		
-		ContactSettings contactSettings = (ContactSettings) new ContactSettings().init();
+		Contact_Settings contactSettings = (Contact_Settings) new Contact_Settings().init();
 		Common.waitForPage(driver, 30);
 		LeadScoring_Edit leadScoring= contactSettings.leadScoring();
 		Common.waitForPage(driver, 30);
 		String condition="Field is this value";
-		ContactListAll contactListAll= leadScoring.selectCondition_FieldIsThisValue(condition);
+		Contact_ListAll contact_ListAll= leadScoring.selectCondition_FieldIsThisValue(condition);
 		Common.waitForPage(driver, 30);
-		contactSettings= siteMenu.contactSettings();
+		contactSettings= siteMenu.contact_Settings();
 		Common.waitForPage(driver, 30);
 		leadScoring=contactSettings.leadScoring();
 		Common.waitForPage(driver, 30);
-		contactListAll=leadScoring.clearFields();
-		Common.waitForPage(driver, 30);
-		contactListAll.logout();
+		contact_ListAll=leadScoring.clearFields();
+	//	Common.waitForPage(driver, 30);
+	//	contact_ListAll.logout();
 	}
 	
 	@Test
@@ -62,23 +62,22 @@ public class LeadScoringEdit extends AbstractTest{
 		SiteMenu siteMenu = (SiteMenu) new SiteMenu().init();
 		Common.waitForPage(driver, 30);
 		siteMenu.contacts();
-		siteMenu.contactSettings();
+		siteMenu.contact_Settings();
 		
-		ContactSettings contactSettings = (ContactSettings) new ContactSettings().init();
+		Contact_Settings contactSettings = (Contact_Settings) new Contact_Settings().init();
 		Common.waitForPage(driver, 30);
 		LeadScoring_Edit leadScoring= contactSettings.leadScoring();
 		Common.waitForPage(driver, 30);
 		String condition="Subscription to a sequence is paused";
-		ContactListAll contactListAll= leadScoring.selectCondition_Sequences(condition);
+		Contact_ListAll contactListAll= leadScoring.selectCondition_Sequences(condition);
 		Common.waitForPage(driver, 30);
-		contactSettings= siteMenu.contactSettings();
+		contactSettings= siteMenu.contact_Settings();
 		Common.waitForPage(driver, 30);
 		leadScoring=contactSettings.leadScoring();
 		Common.waitForPage(driver, 30);
 		contactListAll=leadScoring.clearFields();
-		Common.waitForPage(driver, 30);
-		
-		contactListAll.logout();
-	}*/
+	//	Common.waitForPage(driver, 30);
+	//	contact_ListAll.logout();
+	}
 
 }

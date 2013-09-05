@@ -122,9 +122,7 @@ public class LeadScoring_Edit extends AbstractPage
 	*/
 	
 	
-	
-/*	
-    public ContactListAll selectCondition_Sequences (String condition, ) throws Exception
+    public Contact_ListAll selectCondition_Sequences (String condition) throws Exception
     {	
     	linkAddCondition.click();
     	Thread.sleep(1000);
@@ -135,8 +133,8 @@ public class LeadScoring_Edit extends AbstractPage
     	inputAssignScore.clear();
     	inputAssignScore.sendKeys("11");
     	buttonSave.click();
-    	return PageFactory.initElements(driver, ContactListAll.class);
-    }*/
+    	return PageFactory.initElements(driver, Contact_ListAll.class);
+    }
     
     public Contact_ListAll clearFields() throws Exception
     {	
@@ -180,7 +178,7 @@ public class LeadScoring_Edit extends AbstractPage
     	return PageFactory.initElements(driver, Contact_ListAll.class);
     }
     
-   /* public ContactListAll selectCondition_FieldIsThisValue (String condition) throws Exception
+   public Contact_ListAll selectCondition_FieldIsThisValue (String condition) throws Exception
     {	
     	linkAddCondition.click();
     	Thread.sleep(1000);
@@ -197,7 +195,7 @@ public class LeadScoring_Edit extends AbstractPage
     	inputAssignScore.sendKeys("11");
     	Thread.sleep(1000);
     	buttonSave.click();
-    	return PageFactory.initElements(driver, ContactListAll.class);
-    }*/
+    	return PageFactory.initElements(driver, Contact_ListAll.class);
+    }
 
 }
