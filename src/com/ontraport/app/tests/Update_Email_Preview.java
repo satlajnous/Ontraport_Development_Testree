@@ -24,7 +24,7 @@ public class Update_Email_Preview extends AbstractTest{
 		//calling create Email Message method here..... 
 		String msgName= createMsg.testCreate_EmailMessage();
 		
-		Message_Edit editEmail= msgList.editEmailMessage(msgName);
+		Message_Edit editEmail= msgList.editMessage(msgName);
 		String originalTextMsg= editEmail.getTextFromFrame();
 		String newWindowTextMsg= editEmail.windowHandle();
 		boolean condition= originalTextMsg.equals(newWindowTextMsg);

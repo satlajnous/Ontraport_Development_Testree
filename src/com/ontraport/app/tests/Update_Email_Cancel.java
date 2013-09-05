@@ -24,12 +24,12 @@ public class Update_Email_Cancel extends AbstractTest{
 		//calling create Email Message method here..... 
 		String msgName= createMsg.testCreate_EmailMessage();
 		
-		Message_Edit editEmail= msgList.editEmailMessage(msgName);
+		Message_Edit editEmail= msgList.editMessage(msgName);
 		String originalTextMsg= editEmail.getTextFromFrame();
 		editEmail.enterTextMessage(newTextMessage);
 		String latestTextMsg= editEmail.getTextFromFrame();
 		editEmail.clickCancel();
-		editEmail= msgList.editEmailMessage(msgName);
+		editEmail= msgList.editMessage(msgName);
 		String textMessage= editEmail.getTextFromFrame();
 		Assert.assertTrue(originalTextMsg.equals(textMessage));
 		Assert.assertFalse(textMessage.equals(latestTextMsg));

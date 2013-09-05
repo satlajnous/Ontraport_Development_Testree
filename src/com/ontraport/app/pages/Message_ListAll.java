@@ -29,10 +29,9 @@ public class Message_ListAll extends AbstractPage
         return PageFactory.initElements(driver, Message_TypeSelection.class);
     }
     
-    public Message_Edit editEmailMessage (String msgName) throws Exception{
+    public Message_Edit editMessage (String msgName) throws Exception{
     	driver.findElement(By.xpath("//*[normalize-space(text())='" + (msgName) +"']")).click();
     	Thread.sleep(1000);
     	return PageFactory.initElements(driver, Message_Edit.class);
     }
-    
 }

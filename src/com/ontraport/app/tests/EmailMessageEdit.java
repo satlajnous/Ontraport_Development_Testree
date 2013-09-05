@@ -31,7 +31,7 @@ public class EmailMessageEdit extends AbstractTest {
 		// calling create Email Message method here.....
 		String msgName = createMsg.testCreate_EmailMessage();
 
-		Message_Edit editEmail = msgList.editEmailMessage(msgName);
+		Message_Edit editEmail = msgList.editMessage(msgName);
 		msgList = editEmail.editMessageName(newMsgName);
 		msgList.setHundredRecordsPerPage();
 		boolean condition = msgList.isElementPresent(newMsgName);
@@ -51,13 +51,13 @@ public class EmailMessageEdit extends AbstractTest {
 		// calling create Email Message method here.....
 		String msgName = createMsg.testCreate_EmailMessage();
 
-		Message_Edit editEmail = msgList.editEmailMessage(msgName);
+		Message_Edit editEmail = msgList.editMessage(msgName);
 		String sendOutName = editEmail.getSendOutName();
 		msgList = editEmail.editMessageSendOutName(newSendOutName);
 		msgList.setHundredRecordsPerPage();
 		boolean condition = msgList.isElementPresent(msgName);
 		AssertJUnit.assertTrue(condition);
-		editEmail = msgList.editEmailMessage(msgName);
+		editEmail = msgList.editMessage(msgName);
 		String sendOutName1 = editEmail.getSendOutName();
 		Assert.assertNotSame(sendOutName, sendOutName1);
 	}
@@ -73,14 +73,14 @@ public class EmailMessageEdit extends AbstractTest {
 		// calling create Email Message method here.....
 		String msgName = createMsg.testCreate_EmailMessage();
 
-		Message_Edit editEmail = msgList.editEmailMessage(msgName);
+		Message_Edit editEmail = msgList.editMessage(msgName);
 		Common.waitForPage(driver, 30);
 		String replyToEmail = editEmail.getReplyToEmail();
 		msgList = editEmail.editMessageReplyToEmail(newReplyToEmail);
 		msgList.setHundredRecordsPerPage();
 		boolean condition = msgList.isElementPresent(msgName);
 		AssertJUnit.assertTrue(condition);
-		editEmail = msgList.editEmailMessage(msgName);
+		editEmail = msgList.editMessage(msgName);
 		String replyToEmail1 = editEmail.getReplyToEmail();
 		Assert.assertNotSame(replyToEmail, replyToEmail1);
 		Thread.sleep(2000);
@@ -97,13 +97,13 @@ public class EmailMessageEdit extends AbstractTest {
 		// calling create Email Message method here.....
 		String msgName = createMsg.testCreate_EmailMessage();
 
-		Message_Edit editEmail = msgList.editEmailMessage(msgName);
+		Message_Edit editEmail = msgList.editMessage(msgName);
 		String subject = editEmail.getSubject();
 		msgList = editEmail.editMessageSubject(newSubject);
 		msgList.setHundredRecordsPerPage();
 		boolean condition = msgList.isElementPresent(msgName);
 		AssertJUnit.assertTrue(condition);
-		editEmail = msgList.editEmailMessage(msgName);
+		editEmail = msgList.editMessage(msgName);
 		String subject1 = editEmail.getSubject();
 		Assert.assertNotSame(subject, subject1);
 	}
@@ -119,13 +119,13 @@ public class EmailMessageEdit extends AbstractTest {
 		// calling create Email Message method here.....
 		String msgName = createMsg.testCreate_EmailMessage();
 
-		Message_Edit editEmail = msgList.editEmailMessage(msgName);
+		Message_Edit editEmail = msgList.editMessage(msgName);
 		String bodyText = editEmail.getTextFromFrame();
 		msgList = editEmail.editMessageBody(newBodyText);
 		msgList.setHundredRecordsPerPage();
 		boolean condition = msgList.isElementPresent(msgName);
 		AssertJUnit.assertTrue(condition);
-		editEmail = msgList.editEmailMessage(msgName);
+		editEmail = msgList.editMessage(msgName);
 		String bodyText1 = editEmail.getTextFromFrame();
 		Assert.assertNotSame(bodyText, bodyText1);
 	}
