@@ -42,11 +42,11 @@ public class CreateMessage extends AbstractTest{
 		return msgName;
 	}
 	
-	@Test
+	/*@Test
 	public String testCreate_SMSMessage() throws Exception {
-		/*Login login= (Login) new Login().init();
+		Login login= (Login) new Login().init();
 		Common common= new Common();
-		login.as(common.prop("USERNAME"), common.prop("PASSWORD"));*/
+		login.as(common.prop("USERNAME"), common.prop("PASSWORD"));
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		Contact_ListAll contactListAll = (Contact_ListAll) new Contact_ListAll().init();
 		Message_ListAll msgList = contactListAll.navMessages();
@@ -57,7 +57,7 @@ public class CreateMessage extends AbstractTest{
 		boolean condition= smsMsg.isElementPresent(msgName);
 		Assert.assertTrue(condition);
 		return msgName;
-	}
+	}*/
 	
 	
 
