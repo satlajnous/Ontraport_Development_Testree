@@ -23,7 +23,7 @@ public class SmartForm_Create extends AbstractPage {
 	@FindBy(how = How.XPATH, using = "//div[@class='fe-design-style-widget-group ussr-border-light-all ussr-corner-top ussr-texture-flat-light']//div[@class='fe-design-style-widget-wrapper']")
 	private WebElement fieldPropertyText;
 	
-	@FindBy(how = How.XPATH, using = "")
+	@FindBy(how = How.XPATH, using = "//div[@class='fe-controls']//span[text()='save']")
 	private WebElement buttonPageSave;
 	
 
