@@ -22,14 +22,23 @@ public class SmartForm_Create extends AbstractPage {
 
 	@FindBy(how = How.XPATH, using = "//div[@class='fe-design-style-widget-group ussr-border-light-all ussr-corner-top ussr-texture-flat-light']//div[@class='fe-design-style-widget-wrapper']")
 	private WebElement fieldPropertyText;
+	
+	@FindBy(how = How.XPATH, using = "")
+	private WebElement buttonPageSave;
+	
 
 	public SmartForm_Create createNewSmartForm(String smartFormName)
 			throws Exception
 
 	{
 		inputSmartFormName.click();
+		Thread.sleep(1000);
 		inputEnterDialogName.sendKeys(smartFormName);
+		Thread.sleep(1000);
 		buttonDialogSave.click();
+		Thread.sleep(1000);
+		buttonPageSave.click();
+		Thread.sleep(1000);
 		return PageFactory.initElements(driver, SmartForm_Create.class);
 	}
 
@@ -40,5 +49,7 @@ public class SmartForm_Create extends AbstractPage {
 		System.out.println("Field Property Text: " + fieldProperty);
 		return fieldProperty;
 	}
+	
+	
 
 }
