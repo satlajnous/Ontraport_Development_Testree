@@ -21,6 +21,7 @@ public class Programs_NewAffiliates_AutoApprove extends AbstractTest{
 	String checkboxAffiliateOnDeclinedTransaction= "NO";
 	String checkboxAffiliatePurchaseHistory="NO";
 	String emailID="test@test.com";
+	
 	@Test
 	public void testTC0651_Create_Programs_NewAffiliates_AutoApprove() throws Exception {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

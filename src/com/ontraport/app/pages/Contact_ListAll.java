@@ -40,7 +40,10 @@ public class Contact_ListAll extends AbstractPage {
 
 	@FindBy(how = How.XPATH, using = "//a//span[text()='Rules']")
 	private WebElement linkRules;
-
+	
+	@FindBy(how = How.XPATH, using = "//a//span[text()='Smart Forms']")
+	private WebElement linkSmartForms;
+	
 	/*
 	 * @FindBy(how = How.XPATH, using = "//a//span[text()='Settings']") private
 	 * WebElement linkSettings;
@@ -83,6 +86,15 @@ public class Contact_ListAll extends AbstractPage {
 			e.printStackTrace();
 		}
 		return PageFactory.initElements(driver, Message_ListAll.class);
+	}
+	
+	public SmartForm_ListAll navSmartForms() throws Exception {
+		try {
+			linkSmartForms.click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
+		return PageFactory.initElements(driver, SmartForm_ListAll.class);
 	}
 	
 	public Account_View navAdmin() throws Exception {
