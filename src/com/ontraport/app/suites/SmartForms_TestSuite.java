@@ -6,10 +6,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.ontraport.app.tools.AbstractSuite;
 
-
 @RunWith(Suite.class)
 @SuiteClasses({
-	//com.ontraport.app.tests.SmartForms_Field_Display_NothingSelected.class,
-	com.ontraport.app.tests.SmartForms_FontFamily.class,
-})
-public class SmartForms_TestSuite extends AbstractSuite{}
+com.ontraport.app.tests.SmartForms_Field_Display_NothingSelected.class,
+com.ontraport.app.tests.SmartForms_FontFamily.class, })
+public class SmartForms_TestSuite extends AbstractSuite {
+}
