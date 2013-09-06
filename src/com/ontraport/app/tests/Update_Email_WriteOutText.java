@@ -11,7 +11,7 @@ import com.ontraport.app.pages.Message_Edit;
 import com.ontraport.app.pages.Message_ListAll;
 import com.ontraport.app.tools.AbstractTest;
 
-public class TC0557_Update_Email_WriteOutText extends AbstractTest {
+public class Update_Email_WriteOutText extends AbstractTest {
 	
 	String newBodyText="This is a new Text Message";
 	@Test

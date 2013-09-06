@@ -11,7 +11,7 @@ import com.ontraport.app.pages.Message_Edit;
 import com.ontraport.app.pages.Message_ListAll;
 import com.ontraport.app.tools.AbstractTest;
 
-public class TC0553_Update_Email_SendOutName extends AbstractTest {
+public class Update_Email_SendOutName extends AbstractTest {
 	String newSendOutName="New Selenium";
 	@Test
 	public void testTC0553_Update_Email_SendOutName() throws Exception {

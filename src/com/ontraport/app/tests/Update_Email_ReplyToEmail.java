@@ -1,6 +1,5 @@
 package com.ontraport.app.tests;
 
-import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -11,11 +10,13 @@ import com.ontraport.app.pages.Contact_ListAll;
 import com.ontraport.app.pages.Message_Edit;
 import com.ontraport.app.pages.Message_ListAll;
 import com.ontraport.app.tools.AbstractTest;
+import com.ontraport.app.tools.Common;
 
-public class TC0552_Update_Email_Name extends AbstractTest{
-	String newMsgName= "NewMsg"+Calendar.getInstance().getTimeInMillis();
+public class Update_Email_ReplyToEmail extends AbstractTest {
+	String newReplyToEmail="testSelenium@gmail.com";
+	
 	@Test
-	public void testTC0552_Update_Email_Name() throws Exception {
+	public void testTC0554_Update_Email_ReplyToEmail() throws Exception {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Contact_ListAll contactListAll = (Contact_ListAll) new Contact_ListAll().init();
 		Message_ListAll msgList = contactListAll.navMessages();
@@ -23,13 +24,17 @@ public class TC0552_Update_Email_Name extends AbstractTest{
 		
 		//calling create Email Message method here..... 
 		String msgName= createMsg.testCreate_EmailMessage();
-		
+	
 		Message_Edit editEmail= msgList.editMessage(msgName);
-		msgList= editEmail.editMessageName(newMsgName);
+		Common.waitForPage(driver, 30);
+		String replyToEmail= editEmail.getReplyToEmail();
+		msgList= editEmail.editMessageReplyToEmail(newReplyToEmail);
 		msgList.setHundredRecordsPerPage();
-		boolean condition= msgList.isElementPresent(newMsgName);
+		boolean condition= msgList.isElementPresent(msgName);
 		AssertJUnit.assertTrue(condition);
-		Assert.assertNotEquals(msgName, newMsgName);
-		//msgList.logout();
+		editEmail= msgList.editMessage(msgName);
+		String replyToEmail1= editEmail.getReplyToEmail();
+		Assert.assertNotSame(replyToEmail, replyToEmail1);
+		Thread.sleep(2000);
 	}
 }

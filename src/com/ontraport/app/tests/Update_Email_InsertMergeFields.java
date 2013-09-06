@@ -13,7 +13,7 @@ import com.ontraport.app.pages.Message_Edit;
 import com.ontraport.app.pages.Message_ListAll;
 import com.ontraport.app.tools.AbstractTest;
 
-public class TC0600_Update_Email_InsertMergeFields extends AbstractTest{
+public class Update_Email_InsertMergeFields extends AbstractTest{
 	String newMergeField="First Name";
 
 	
