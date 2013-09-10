@@ -52,7 +52,6 @@ public class Contact_Settings extends AbstractPage
         
         try {
         	linkLeadScoring.click();
-        	Thread.sleep(2000);
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
