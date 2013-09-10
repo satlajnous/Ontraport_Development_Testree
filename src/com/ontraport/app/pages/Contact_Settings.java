@@ -19,6 +19,12 @@ public class Contact_Settings extends AbstractPage
 	@FindBy(how = How.XPATH, using = "//div[@class='ussr-list-item-desc' and text()='Set your lead scoring rules.']")
     private WebElement linkLeadScoring;
 	
+	@FindBy(how = How.XPATH, using = "//div[text()='SCHEDULED BROADCASTS']")
+    private WebElement linkScheduledBroadcasting;
+	
+	@FindBy(how = How.XPATH, using = "//div[text()='PENDING POSTCARDS']")
+    private WebElement linkPendingPostcards;
+	
 	
 	public Contact_Settings fieldSettings () throws Exception
     {
@@ -51,4 +57,27 @@ public class Contact_Settings extends AbstractPage
         }
         return PageFactory.initElements(driver, LeadScoring_Edit.class);
     }
+	
+	public QueuedMessage_ListAll scheduledBroadcast () throws Exception
+    {
+        
+        try {
+        	linkScheduledBroadcasting.click();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+        return PageFactory.initElements(driver, QueuedMessage_ListAll.class);
+    }
+	
+	public PendingMail_ListAll pendingPostcards () throws Exception
+    {
+        
+        try {
+        	linkPendingPostcards.click();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+        return PageFactory.initElements(driver, PendingMail_ListAll.class);
+    }
+		
 }

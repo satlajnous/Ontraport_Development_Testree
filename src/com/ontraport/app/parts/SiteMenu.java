@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.ontraport.app.pages.Affiliate_ListAll;
 import com.ontraport.app.pages.Contact_ListAll;
 import com.ontraport.app.pages.Contact_Settings;
+import com.ontraport.app.pages.LandingPage_ListAll;
 import com.ontraport.app.tools.AbstractPart;
 
 public class SiteMenu extends AbstractPart {
@@ -20,6 +21,12 @@ public class SiteMenu extends AbstractPart {
 
 	@FindBy(how = How.XPATH, using = "//aside[@id='ussr-chrome-sidebar']//span[.='Partners']")
 	private WebElement linkPartners;
+	
+	@FindBy(how = How.XPATH, using = "//aside[@id='ussr-chrome-sidebar']//span[.='Sites']")
+	private WebElement linkSites;
+	
+	@FindBy(how = How.XPATH, using = "//li[@class='primary-nav-sub-item']//span[text()='Landing Page']")
+	private WebElement linkLandingPages;
 
 	public Contact_Settings contact_Settings() throws Exception {
 
@@ -61,5 +68,16 @@ public class SiteMenu extends AbstractPart {
 			e.printStackTrace();
 		}
 		return PageFactory.initElements(driver, Affiliate_ListAll.class);
+	}
+	
+	public LandingPage_ListAll clickLandingPages() throws Exception {
+
+		try {
+			linkSites.click();
+			linkLandingPages.click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
+		return PageFactory.initElements(driver, LandingPage_ListAll.class);
 	}
 }
