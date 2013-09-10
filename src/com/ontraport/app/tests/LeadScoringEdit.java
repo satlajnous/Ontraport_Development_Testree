@@ -1,5 +1,6 @@
 package com.ontraport.app.tests;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.ontraport.app.pages.Contact_ListAll;
@@ -11,31 +12,56 @@ import com.ontraport.app.tools.Common;
 
 public class LeadScoringEdit extends AbstractTest{
 	
+
+	
+	
 	@Test
 	public void testLeadScoring_VisitedLandingPageCertainNoTimes() throws Exception {
-		SiteMenu siteMenu = (SiteMenu) new SiteMenu().init();
-		Common.waitForPage(driver, 30);
-		siteMenu.contacts();
-		siteMenu.contact_Settings();
+		LeadScoring_Edit leadScoringEditPgObj = navigateToLeadScoringPage ();
 		
-		Contact_Settings contact_Settings = (Contact_Settings) new Contact_Settings().init();
-		Common.waitForPage(driver, 30);
-		LeadScoring_Edit leadScoring= contact_Settings.leadScoring();
-		Common.waitForPage(driver, 30);
-		String condition="Has visited a landing page a certain number of times";
-		Contact_ListAll contact_ListAll= leadScoring.selectCondition_VisitLandingPage(condition /*,"Select Condition","Select Landing Page","Select..."*/);
-		Common.waitForPage(driver, 30);
-		contact_Settings= siteMenu.contact_Settings();
-		Common.waitForPage(driver, 30);
-		leadScoring=contact_Settings.leadScoring();
-		Common.waitForPage(driver, 30);
-		contact_ListAll=leadScoring.clearFields();
-	//	Common.waitForPage(driver, 30);
-	//	contact_ListAll.logout();
+		
+		leadScoringEditPgObj = leadScoringEditPgObj.clearAllConditions();
+		leadScoringEditPgObj.clickSaveButton();
+		Common.waitForPage(driver, 60);
+			
+		leadScoringEditPgObj = navigateToLeadScoringPage ();
+		leadScoringEditPgObj = leadScoringEditPgObj.clickAddNewCondition();	
+		
+		String[] placeHolders = {"Select Condition", "Select Field...", "Select Condition..."};
+		String[] selectOptions = {"Field is this value", "SelText", "Equal To"};
+		
+		leadScoringEditPgObj = leadScoringEditPgObj.selectDropDownsBasedOnConditions (placeHolders, selectOptions);
+		leadScoringEditPgObj = leadScoringEditPgObj.typeIntoTextBoxBasedOnPlaceholder ("Enter Value...", "Selenium");
+		
+		leadScoringEditPgObj = leadScoringEditPgObj.typeIntoTextBoxBasedOnIndex(3,"selenium");
+		
+		leadScoringEditPgObj = leadScoringEditPgObj.assignLeadScoringvalue("11");
+		leadScoringEditPgObj.clickSaveButton();
+		Common.waitForPage(driver, 60);
+			
+		leadScoringEditPgObj = navigateToLeadScoringPage ();
+		
+		boolean b = leadScoringEditPgObj.verifyTheValueInDropDownBasedOnPlaceHolder ("Select Field...", "SelText");
+		boolean b1 = leadScoringEditPgObj.verifyTheValueInDropDownBasedOnPlaceHolder ("Select Condition...", "Equal To");	
+		boolean b2 = leadScoringEditPgObj.verifyValueOfTxtBoxBasedOnIndex(3, "selenium");
+		boolean b3 = leadScoringEditPgObj.verifyScoreValue("11");
+		
+		System.out.println(b);
+		System.out.println(b1);
+		System.out.println(b2);
+		System.out.println(b3);
+		
+		
+		Assert.assertTrue ("Landing Page Comparision", b);
+		Assert.assertTrue ("Condition selected", b1);
+		Assert.assertTrue ("number of times", b2);
+		Assert.assertTrue ("Score value", b3);
 	}
 	
-	@Test
-	public void testLeadScoring_FieldIsThisValue() throws Exception {
+	
+	
+	
+	public LeadScoring_Edit navigateToLeadScoringPage () throws Exception{
 		SiteMenu siteMenu = (SiteMenu) new SiteMenu().init();
 		Common.waitForPage(driver, 30);
 		siteMenu.contacts();
@@ -43,41 +69,12 @@ public class LeadScoringEdit extends AbstractTest{
 		
 		Contact_Settings contactSettings = (Contact_Settings) new Contact_Settings().init();
 		Common.waitForPage(driver, 30);
-		LeadScoring_Edit leadScoring= contactSettings.leadScoring();
+		LeadScoring_Edit leadScoringEditPgObj = contactSettings.leadScoring();
 		Common.waitForPage(driver, 30);
-		String condition="Field is this value";
-		Contact_ListAll contact_ListAll= leadScoring.selectCondition_FieldIsThisValue(condition);
-		Common.waitForPage(driver, 30);
-		contactSettings= siteMenu.contact_Settings();
-		Common.waitForPage(driver, 30);
-		leadScoring=contactSettings.leadScoring();
-		Common.waitForPage(driver, 30);
-		contact_ListAll=leadScoring.clearFields();
-	//	Common.waitForPage(driver, 30);
-	//	contact_ListAll.logout();
+		return leadScoringEditPgObj;
 	}
 	
-	@Test
-	public void testLeadScoring_SubscriptionToSeqPaused() throws Exception {
-		SiteMenu siteMenu = (SiteMenu) new SiteMenu().init();
-		Common.waitForPage(driver, 30);
-		siteMenu.contacts();
-		siteMenu.contact_Settings();
-		
-		Contact_Settings contactSettings = (Contact_Settings) new Contact_Settings().init();
-		Common.waitForPage(driver, 30);
-		LeadScoring_Edit leadScoring= contactSettings.leadScoring();
-		Common.waitForPage(driver, 30);
-		String condition="Subscription to a sequence is paused";
-		Contact_ListAll contactListAll= leadScoring.selectCondition_Sequences(condition);
-		Common.waitForPage(driver, 30);
-		contactSettings= siteMenu.contact_Settings();
-		Common.waitForPage(driver, 30);
-		leadScoring=contactSettings.leadScoring();
-		Common.waitForPage(driver, 30);
-		contactListAll=leadScoring.clearFields();
-	//	Common.waitForPage(driver, 30);
-	//	contact_ListAll.logout();
-	}
+	
+
 
 }

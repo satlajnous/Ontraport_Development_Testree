@@ -192,6 +192,55 @@ public abstract class AbstractPage {
 		}
 
 	}
+	
+	
+
+	public void selectDropDownByTyping (WebElement parentElement, WebElement selectButtonChoose, WebElement selectInputChoose, String selectListElementXPath, String option){
+		System.out.println("**************************************************************");
+
+
+		System.out.println("option:" + option);
+
+		selectButtonChoose.click();
+		selectInputChoose.sendKeys(option);
+
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//driver.findElement(By.xpath("//div[div[text()='"+ruleDesc+"']]//div[input[normalize-space(@placeholder)='"+placeHolder+"']]/descendant::li/div[normalize-space(text())='"+option+"']")).click();
+		//List<WebElement> childEleP = driver.findElements(By.xpath("//div[input[normalize-space(@placeholder)='"+placeHolder+"']]//li/div"));
+		//Iterator<WebElement> childEleIteratorP = childEleP.iterator();
+		System.out.println("*************ChildItems************");
+		List<WebElement> selectListDIVChoose = parentElement.findElements(By.xpath(selectListElementXPath));
+		System.out.println("Number:"+selectListDIVChoose .size());
+
+		for (int i = 0; i < selectListDIVChoose.size(); i++) {
+			selectButtonChoose.sendKeys(Keys.ARROW_DOWN);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			List<WebElement> childEle = selectListDIVChoose;
+			Iterator<WebElement> childEleIterator = childEle.iterator();
+			while (childEleIterator.hasNext()) {
+				WebElement webElement = (WebElement) childEleIterator.next();
+				System.out.println(webElement.getText());
+				if (webElement.getText().trim().equalsIgnoreCase(option.trim())){
+					webElement.click();
+					return;
+				}
+			}
+		}
+	}
+		
+			
+			
 
 	/*
 	 * 3. To check the presence of element in a list after creation or

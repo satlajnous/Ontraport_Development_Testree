@@ -4,16 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.ontraport.app.pages.Message_Edit;
 
 public class Common
 {
@@ -58,7 +54,7 @@ public class Common
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return jQcondition;
     }
@@ -162,4 +158,23 @@ public class Common
 		}
     	return flag;
     }
+    
+    /**
+     * Used to scroll to the element visible
+     * @param driver
+     * @param targetWebElement
+     */
+    public static void scrollTillElementVisisble (WebDriver driver, WebElement targetWebElement){
+    	
+	    
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", targetWebElement);
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+
 }
