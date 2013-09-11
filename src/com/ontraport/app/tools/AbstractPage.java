@@ -51,7 +51,7 @@ public abstract class AbstractPage {
 
 	@FindBy(how = How.XPATH, using = "//html//body")
 	private WebElement newWindowBody;
-	
+
 	@FindBy(how = How.XPATH, using = "//table[@class='ussr-table-striped']//tr//td[1]")
 	private List<WebElement> tableItemList;
 
@@ -192,18 +192,17 @@ public abstract class AbstractPage {
 		}
 
 	}
-	
-	
 
-	public void selectDropDownByTyping (WebElement parentElement, WebElement selectButtonChoose, WebElement selectInputChoose, String selectListElementXPath, String option){
-		System.out.println("**************************************************************");
-
+	public void selectDropDownByTyping(WebElement parentElement,
+			WebElement selectButtonChoose, WebElement selectInputChoose,
+			String selectListElementXPath, String option) {
+		System.out
+				.println("**************************************************************");
 
 		System.out.println("option:" + option);
 
 		selectButtonChoose.click();
 		selectInputChoose.sendKeys(option);
-
 
 		try {
 			Thread.sleep(2000);
@@ -211,12 +210,14 @@ public abstract class AbstractPage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//driver.findElement(By.xpath("//div[div[text()='"+ruleDesc+"']]//div[input[normalize-space(@placeholder)='"+placeHolder+"']]/descendant::li/div[normalize-space(text())='"+option+"']")).click();
-		//List<WebElement> childEleP = driver.findElements(By.xpath("//div[input[normalize-space(@placeholder)='"+placeHolder+"']]//li/div"));
-		//Iterator<WebElement> childEleIteratorP = childEleP.iterator();
+		// driver.findElement(By.xpath("//div[div[text()='"+ruleDesc+"']]//div[input[normalize-space(@placeholder)='"+placeHolder+"']]/descendant::li/div[normalize-space(text())='"+option+"']")).click();
+		// List<WebElement> childEleP =
+		// driver.findElements(By.xpath("//div[input[normalize-space(@placeholder)='"+placeHolder+"']]//li/div"));
+		// Iterator<WebElement> childEleIteratorP = childEleP.iterator();
 		System.out.println("*************ChildItems************");
-		List<WebElement> selectListDIVChoose = parentElement.findElements(By.xpath(selectListElementXPath));
-		System.out.println("Number:"+selectListDIVChoose .size());
+		List<WebElement> selectListDIVChoose = parentElement.findElements(By
+				.xpath(selectListElementXPath));
+		System.out.println("Number:" + selectListDIVChoose.size());
 
 		for (int i = 0; i < selectListDIVChoose.size(); i++) {
 			selectButtonChoose.sendKeys(Keys.ARROW_DOWN);
@@ -231,16 +232,13 @@ public abstract class AbstractPage {
 			while (childEleIterator.hasNext()) {
 				WebElement webElement = (WebElement) childEleIterator.next();
 				System.out.println(webElement.getText());
-				if (webElement.getText().trim().equalsIgnoreCase(option.trim())){
+				if (webElement.getText().trim().equalsIgnoreCase(option.trim())) {
 					webElement.click();
 					return;
 				}
 			}
 		}
 	}
-		
-			
-			
 
 	/*
 	 * 3. To check the presence of element in a list after creation or
@@ -262,12 +260,12 @@ public abstract class AbstractPage {
 	 */
 	public void setHundredRecordsPerPage() {
 		try {
-			int sizeOfList= tableItemList.size();
-			if(sizeOfList>6){
-			buttonRecords.click();
-			Thread.sleep(2000);
-			inputSetRecordToHundred.click();
-			Thread.sleep(5000);
+			int sizeOfList = tableItemList.size();
+			if (sizeOfList > 6) {
+				buttonRecords.click();
+				Thread.sleep(2000);
+				inputSetRecordToHundred.click();
+				Thread.sleep(5000);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -300,5 +298,29 @@ public abstract class AbstractPage {
 			}
 		}
 		return emailText2;
+	}
+
+	/*
+	 * 6. To select item based on index position
+	 */
+	public String selectItemBasedOnIndex(String itemLink, int index) {
+		String optionText = "";
+		try {
+			driver.findElement(
+					By.xpath("//div[input[normalize-space(@placeholder)='"
+							+ (itemLink) + "']]/descendant::button")).click();
+			Thread.sleep(4000);
+			optionText = driver
+					.findElement(
+							By.xpath("//div[input[@placeholder='" + (itemLink)
+									+ "']]/descendant::li[" + index + "]"))
+					.getText().trim();
+			driver.findElement(
+					By.xpath("//div[input[@placeholder='" + (itemLink)
+							+ "']]/descendant::li[" + index + "]")).click();
+		} catch (InterruptedException e) {
+
+		}
+		return optionText;
 	}
 }

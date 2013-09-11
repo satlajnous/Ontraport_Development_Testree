@@ -26,8 +26,15 @@ public class LeadRouter_ListAll extends AbstractPage
     @FindBy(how = How.CSS, using = "span.ussr-icon.ussr-icon-checkbox-empty")
     private WebElement checkBox;
     
-    public LeadRouter_ListAll sample () throws Exception
-    {
+    @FindBy(how = How.XPATH, using = "//div[@id='ontraport_panel_action_group_actions']")
+    private WebElement linkActions;
+    
+    @FindBy(how = How.XPATH, using = "//div[@class='ussr-chrome-panel-action-drawer-content ussr-texture-flat-light']")
+    private WebElement buttonDeleteRouter;
+    
+    public LeadRouter_ListAll clickActions () throws Exception
+    {	linkActions.click();
+     	Thread.sleep(1000);
         return PageFactory.initElements(driver, LeadRouter_ListAll.class);
     }
     public LeadRouter_TypeSelection newLeadRouter () throws Exception
@@ -47,6 +54,12 @@ public class LeadRouter_ListAll extends AbstractPage
     	builder.moveToElement(checkBox).click().build().perform();
 
         return PageFactory.initElements(driver, this.getClass());
+    }
+    
+    public boolean isElementDisplayed(){
+    	boolean isShown= buttonDeleteRouter.isDisplayed();
+    	System.out.println("Is displayed? "+isShown);
+    	return isShown;
     }
 
 }

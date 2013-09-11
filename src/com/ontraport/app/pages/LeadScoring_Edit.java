@@ -90,6 +90,11 @@ public class LeadScoring_Edit extends AbstractPage
 	@FindBy(how = How.XPATH, using = "//div[input[normalize-space(@placeholder)='Select Condition...']]//li/div")
     private List<WebElement> selectListFieldRelationalCondition;
 	
+	@FindBy(how = How.XPATH, using = "//div[@class='ussr-pane-editor-back' and normalize-space(text())='Back']")
+    private WebElement buttonBack;
+	
+	@FindBy(how = How.XPATH, using = "//button//span[text()='Cancel']")
+    private WebElement buttonCancel;
 	
 	//Ravi
 	@FindBy(how = How.XPATH, using = "//*[input/@placeholder]")
@@ -106,6 +111,7 @@ public class LeadScoring_Edit extends AbstractPage
 	
 	@FindBy (how = How.XPATH, using = "//textarea")
 	private List<WebElement> inputTextAreaCollection;
+	
 	//@FindBy(how = How.XPATH, using = "//input/@placeholder")
 	//@FindBy(how = How.XPATH, using = "//input/@placeholder")
     //private List<WebElement> inputBoxesOfselectForAssertions;
@@ -149,20 +155,6 @@ public class LeadScoring_Edit extends AbstractPage
 		return PageFactory.initElements(driver, LeadScoring_Edit.class);
 	}
 	
-
-	public LeadScoring_Edit typeIntoTextArea (String textToBetyped, int index) throws Exception{
-		
-		WebElement inputTxtBox = inputTextAreaCollection.get(index-1);
-		inputTxtBox.clear();
-		inputTxtBox.sendKeys(textToBetyped);
-		return PageFactory.initElements(driver, LeadScoring_Edit.class);
-	}
-	
-	public boolean verifyValueOfTxtAreaBasedOnIndex (int index, String expectedValue){
-		WebElement inputBoxEle = inputTextAreaCollection.get(index-1);
-		return Common.verifyTextBoxValue(inputBoxEle, expectedValue);
-	}
-	
 	
 	public LeadScoring_Edit typeIntoTextBoxBasedOnPlaceholder (String placeHolder, String textToBetyped) throws Exception{
 		WebElement parentOfSelect = getParentWebElementForSelect (placeHolder);
@@ -177,6 +169,14 @@ public class LeadScoring_Edit extends AbstractPage
     	Common.waitForPage(driver, 60);
     	return PageFactory.initElements(driver, Contact_ListAll.class);
     }
+	
+	public LeadScoring_Edit typeIntoTextArea (String textToBetyped, int index) throws Exception{
+		
+		WebElement inputTxtBox = inputTextAreaCollection.get(index-1);
+		inputTxtBox.clear();
+		inputTxtBox.sendKeys(textToBetyped);
+		return PageFactory.initElements(driver, LeadScoring_Edit.class);
+	}
 	
 	public LeadScoring_Edit clearAllConditions (){
 		System.out.println("No of delete ikons:" + deleteIconLink.size());
@@ -375,4 +375,15 @@ public class LeadScoring_Edit extends AbstractPage
 		return Common.verifyTextBoxValue(inputAssignScore, expectedValue);
 	}
 
+	public Contact_ListAll clickBack() throws Exception{
+		buttonBack.click();
+		Thread.sleep(1000);
+		return PageFactory.initElements(driver,Contact_ListAll.class);
+	}
+	
+	public Contact_ListAll clickCancel() throws Exception {
+		buttonCancel.click();
+		Thread.sleep(1000);
+		return PageFactory.initElements(driver, Contact_ListAll.class);
+	}
 }

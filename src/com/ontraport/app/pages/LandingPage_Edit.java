@@ -45,11 +45,14 @@ public class LandingPage_Edit extends AbstractPage {
 	@FindBy(how = How.XPATH, using = "//div[@class='ontraport_components_dialog']//input[@class='btn2' and @value='Accept']")
     private WebElement buttonAcceptDialog;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[3]/div/div[3]/div/div/div/input")
+	private WebElement getLandingPageName;
+	
 	@FindBy(how = How.XPATH, using = "//div[@class='menu_button_class']//tr[td[text()='Page Size: ']]//td[2]//div")
     private WebElement linkPageSize;
 
 	public String getLandingPageName() throws Exception {
-		String lpName = inputLandingPageName.getAttribute("value").trim();
+		String lpName = getLandingPageName.getAttribute("value");
 		System.out.println("LP Name: " + lpName);
 		return lpName;
 	}
