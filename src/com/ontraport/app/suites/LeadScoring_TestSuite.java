@@ -13,10 +13,22 @@ import com.ontraport.app.tools.AbstractSuite;
 		com.ontraport.app.tests.LeadScoring_TC0337.class,
 		com.ontraport.app.tests.LeadScoring_TC0338.class,
 		com.ontraport.app.tests.LeadScoring_TC0339.class,
+		com.ontraport.app.tests.LeadScoring_TC0340.class,
+		com.ontraport.app.tests.LeadScoring_TC0341.class,
+		
 		com.ontraport.app.tests.LeadScoring_TC0472.class,
 		com.ontraport.app.tests.LeadScoring_TC0474.class,
 		com.ontraport.app.tests.LeadScoring_TC0475.class,
 		com.ontraport.app.tests.LeadScoring_TC0476.class,
+		
+		com.ontraport.app.tests.LeadScoring_TC0478.class,
+		com.ontraport.app.tests.LeadScoring_TC0479.class,
+		com.ontraport.app.tests.LeadScoring_TC0480.class,
+		com.ontraport.app.tests.LeadScoring_TC0483.class,
+		com.ontraport.app.tests.LeadScoring_TC0484.class,
+		com.ontraport.app.tests.LeadScoring_TC0485.class,
+		com.ontraport.app.tests.LeadScoring_TC0486.class,
+		
 		com.ontraport.app.tests.LeadScoring_TC0506.class,
 		com.ontraport.app.tests.LeadScoring_TC0507.class, })
 public class LeadScoring_TestSuite extends AbstractSuite {

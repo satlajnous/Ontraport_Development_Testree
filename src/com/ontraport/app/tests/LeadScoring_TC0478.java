@@ -1,5 +1,7 @@
 package com.ontraport.app.tests;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +14,7 @@ import com.ontraport.app.tools.Common;
 public class LeadScoring_TC0478 extends AbstractTest {
 	
 	@Test
-	public void testLeadScoring_HasOrderCertainAmountProduct() throws Exception {
+	public void testLeadScoring_HasBeenSubscribedProductCertainAmountTime() throws Exception {
 		LeadScoring_Edit leadScoringEditPgObj = navigateToLeadScoringPage ();
 		
 		
@@ -23,8 +25,8 @@ public class LeadScoring_TC0478 extends AbstractTest {
 		leadScoringEditPgObj = navigateToLeadScoringPage ();
 		leadScoringEditPgObj = leadScoringEditPgObj.clickAddNewCondition();	
 		
-		String[] placeHolders = {"Select Condition", "Select Subscription...", "Select Product"};
-		String[] selectOptions = {"Has been subscribed to a product for a certain amo...", "Equal To", "Any Product"};
+		String[] placeHolders = {"Select Condition", "Select Subscription Product", "Select..."};
+		String[] selectOptions = {"Has been subscribed to a product for a certain amount of time", "Any Subscription Product", "Days"};
 				
 		leadScoringEditPgObj = leadScoringEditPgObj.selectDropDownsBasedOnConditions (placeHolders, selectOptions);
 		leadScoringEditPgObj = leadScoringEditPgObj.typeIntoTextBoxBasedOnIndex(2,"1");
@@ -35,8 +37,8 @@ public class LeadScoring_TC0478 extends AbstractTest {
 			
 		leadScoringEditPgObj = navigateToLeadScoringPage ();
 		
-		boolean b = leadScoringEditPgObj.verifyTheValueInDropDownBasedOnPlaceHolder ("Select...", "Equal To");
-		boolean b1 = leadScoringEditPgObj.verifyTheValueInDropDownBasedOnPlaceHolder ("Select Product", "Any Product");	
+		boolean b = leadScoringEditPgObj.verifyTheValueInDropDownBasedOnPlaceHolder ("Select Subscription Product", "Any Subscription Product");
+		boolean b1 = leadScoringEditPgObj.verifyTheValueInDropDownBasedOnPlaceHolder ("Select...", "Days");	
 		boolean b2 = leadScoringEditPgObj.verifyValueOfTxtBoxBasedOnIndex(2, "1");
 		boolean b3 = leadScoringEditPgObj.verifyScoreValue("11");
 		
@@ -46,8 +48,8 @@ public class LeadScoring_TC0478 extends AbstractTest {
 		System.out.println(b3);
 		
 		
-		Assert.assertTrue ("Condition", b);
-		Assert.assertTrue ("Product", b1);
+		Assert.assertTrue ("Subscription", b);
+		Assert.assertTrue ("Subscription Product", b1);
 		Assert.assertTrue ("number of times", b2);
 		Assert.assertTrue ("Score value", b3);
 	}
