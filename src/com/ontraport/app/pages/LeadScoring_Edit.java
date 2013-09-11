@@ -104,7 +104,8 @@ public class LeadScoring_Edit extends AbstractPage
 	@FindBy (how = How.XPATH, using = "//a/span[@class='ussr-icon ussr-icon-trashcan']")
 	private List<WebElement> deleteIconLink;
 	
-	
+	@FindBy (how = How.XPATH, using = "//textarea")
+	private List<WebElement> inputTextAreaCollection;
 	//@FindBy(how = How.XPATH, using = "//input/@placeholder")
 	//@FindBy(how = How.XPATH, using = "//input/@placeholder")
     //private List<WebElement> inputBoxesOfselectForAssertions;
@@ -146,6 +147,20 @@ public class LeadScoring_Edit extends AbstractPage
 		inputBoxEle.clear();
 		inputBoxEle.sendKeys(textToBetyped);
 		return PageFactory.initElements(driver, LeadScoring_Edit.class);
+	}
+	
+
+	public LeadScoring_Edit typeIntoTextArea (String textToBetyped, int index) throws Exception{
+		
+		WebElement inputTxtBox = inputTextAreaCollection.get(index-1);
+		inputTxtBox.clear();
+		inputTxtBox.sendKeys(textToBetyped);
+		return PageFactory.initElements(driver, LeadScoring_Edit.class);
+	}
+	
+	public boolean verifyValueOfTxtAreaBasedOnIndex (int index, String expectedValue){
+		WebElement inputBoxEle = inputTextAreaCollection.get(index-1);
+		return Common.verifyTextBoxValue(inputBoxEle, expectedValue);
 	}
 	
 	
