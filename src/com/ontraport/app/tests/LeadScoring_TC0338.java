@@ -52,10 +52,9 @@ public class LeadScoring_TC0338 extends AbstractTest{
 		System.out.println(b3);
 		
 		
-		Assert.assertTrue ("Landing Page Comparision", b);
+		Assert.assertTrue ("Select Numeric Comparision", b);
 		Assert.assertTrue ("Condition selected", b1);
-		//got stuck here Ran'z
-		Assert.assertTrue ("number of times", b2);
+		Assert.assertTrue ("Numeric Comparison", b2);
 		Assert.assertTrue ("Score value", b3);
 	}
 	
