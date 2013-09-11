@@ -16,7 +16,7 @@ public class LeadScoring_TC0337 extends AbstractTest{
 	
 	
 	@Test
-	public void testLeadScoring_VisitedLandingPageCertainNoTimes() throws Exception {
+	public void testLeadScoring_AfieldMeetsAGivenCriteriaLongText() throws Exception {
 		LeadScoring_Edit leadScoringEditPgObj = navigateToLeadScoringPage ();
 		
 		
