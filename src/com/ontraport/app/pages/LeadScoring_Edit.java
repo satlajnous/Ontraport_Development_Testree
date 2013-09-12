@@ -116,6 +116,13 @@ public class LeadScoring_Edit extends AbstractPage
 	@FindBy (how = How.XPATH, using = "//div[@class='component-score-editor-degredation clearfix ussr-border-solid-tb ussr-texture-flat-light']//input")
 	private WebElement inputScoreDegradation;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[4]/div[1]/div/div/div[1]/div/div[2]/div/div[1]/div/div[2]/div[2]/div[1]/span")
+    private WebElement displayContactScoringConditionsText;
+
+	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[4]/div[1]/div/div/div[1]/div/div[2]/div/div[1]/div/div[2]/div[2]/div[1]/span[1]")
+    private WebElement displayContactScoringWithConditionsText;
+	
+	
 	
 	//div[@class='component-score-editor-degredation clearfix ussr-border-solid-tb ussr-texture-flat-light']//input
 	
@@ -406,4 +413,22 @@ public class LeadScoring_Edit extends AbstractPage
 		Thread.sleep(1000);
 		return PageFactory.initElements(driver, Contact_ListAll.class);
 	}
+	
+	public boolean contactScoringConditionText(String condition){
+        String contactScoringConditionText= displayContactScoringConditionsText.getText().trim();
+        if(contactScoringConditionText.equals(condition.trim())){
+              return true;
+        }
+        return false;
+  }
+
+	public boolean contactScoringWithConditionText(String condition){
+        String contactScoringWithConditionText= displayContactScoringConditionsText.getText().trim();
+        if(contactScoringWithConditionText.equals(condition.trim())){
+              return true;
+        }
+        return false;
+  }
+		
+	
 }

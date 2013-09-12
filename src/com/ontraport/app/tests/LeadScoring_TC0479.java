@@ -18,7 +18,7 @@ public class LeadScoring_TC0479 extends AbstractTest {
 		
 		leadScoringEditPgObj = leadScoringEditPgObj.clearAllConditions();
 		leadScoringEditPgObj.clickSaveButton();
-		Common.waitForPage(driver, 60);
+		Common.waitForPage(driver, 6);
 			
 		leadScoringEditPgObj = navigateToLeadScoringPage ();
 		leadScoringEditPgObj = leadScoringEditPgObj.clickAddNewCondition();	
@@ -30,7 +30,7 @@ public class LeadScoring_TC0479 extends AbstractTest {
 				
 		leadScoringEditPgObj = leadScoringEditPgObj.assignLeadScoringvalue("11");
 		leadScoringEditPgObj.clickSaveButton();
-		Common.waitForPage(driver, 60);
+		Common.waitForPage(driver, 6);
 			
 		leadScoringEditPgObj = navigateToLeadScoringPage ();
 		
@@ -48,14 +48,14 @@ public class LeadScoring_TC0479 extends AbstractTest {
 	
 	public LeadScoring_Edit navigateToLeadScoringPage () throws Exception{
 		SiteMenu siteMenu = (SiteMenu) new SiteMenu().init();
-		Common.waitForPage(driver, 30);
+		Common.waitForPage(driver, 3);
 		siteMenu.contacts();
 		siteMenu.contact_Settings();
 		
 		Contact_Settings contactSettings = (Contact_Settings) new Contact_Settings().init();
-		Common.waitForPage(driver, 30);
+		Common.waitForPage(driver, 3);
 		LeadScoring_Edit leadScoringEditPgObj = contactSettings.leadScoring();
-		Common.waitForPage(driver, 30);
+		Common.waitForPage(driver, 3);
 		return leadScoringEditPgObj;
 	}
 	
