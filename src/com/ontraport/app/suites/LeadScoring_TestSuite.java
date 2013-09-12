@@ -8,7 +8,15 @@ import com.ontraport.app.tools.AbstractSuite;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-
+	
+		com.ontraport.app.tests.LeadScoring_TC0326.class,
+		com.ontraport.app.tests.LeadScoring_TC0327.class,	
+		com.ontraport.app.tests.LeadScoring_TC0328.class,
+		com.ontraport.app.tests.LeadScoring_TC0329.class,
+		com.ontraport.app.tests.LeadScoring_TC0330.class,
+		com.ontraport.app.tests.LeadScoring_TC0331.class,
+		com.ontraport.app.tests.LeadScoring_TC0332.class,
+		com.ontraport.app.tests.LeadScoring_TC0333.class,
 		com.ontraport.app.tests.LeadScoring_TC0334.class,
 		com.ontraport.app.tests.LeadScoring_TC0337.class,
 		com.ontraport.app.tests.LeadScoring_TC0338.class,

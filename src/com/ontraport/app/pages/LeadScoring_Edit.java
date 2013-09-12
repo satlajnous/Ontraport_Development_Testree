@@ -2,6 +2,7 @@ package com.ontraport.app.pages;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -111,6 +112,9 @@ public class LeadScoring_Edit extends AbstractPage
 	
 	@FindBy (how = How.XPATH, using = "//textarea")
 	private List<WebElement> inputTextAreaCollection;
+
+	@FindBy (how = How.XPATH, using = "//div[@class='component-score-editor-degredation clearfix ussr-border-solid-tb ussr-texture-flat-light']//input")
+	private WebElement inputScore;
 	
 	//@FindBy(how = How.XPATH, using = "//input/@placeholder")
 	//@FindBy(how = How.XPATH, using = "//input/@placeholder")
@@ -166,7 +170,6 @@ public class LeadScoring_Edit extends AbstractPage
 	
 	public Contact_ListAll clickSaveButton() throws Exception  {	
     	buttonSave.click();
-    	Common.waitForPage(driver, 60);
     	return PageFactory.initElements(driver, Contact_ListAll.class);
     }
 	
@@ -201,7 +204,15 @@ public class LeadScoring_Edit extends AbstractPage
 			}
 			
 		}*/
-		Common.waitForPage(driver, 60);
+		Common.waitForPage(driver,3);
+		return PageFactory.initElements(driver, LeadScoring_Edit.class);
+	}
+	
+	public LeadScoring_Edit clearAllFields ()throws Exception{
+		buttonTrashDelete.click();
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		inputScore.clear();
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		return PageFactory.initElements(driver, LeadScoring_Edit.class);
 	}
 	
@@ -213,8 +224,7 @@ public class LeadScoring_Edit extends AbstractPage
 		//List<WebElement> selectDIVListElement =  parentElement.findElements(By.xpath(".//li/div"));
 		//selectDropDownByTyping(selectBtnElement, selectInputElement, selectDIVListElement, valueToBeSelected);
 		selectDropDownByTyping(parentElement, selectBtnElement, selectInputElement, ".//li/div", valueToBeSelected);
-		Common.waitForPage(driver, 60);
-		Thread.sleep(2000);
+		Common.waitForPage(driver, 5);
 		return PageFactory.initElements(driver, LeadScoring_Edit.class);
 	}
 	
@@ -283,14 +293,6 @@ public class LeadScoring_Edit extends AbstractPage
     	buttonSave.click();
     	return PageFactory.initElements(driver, ContactListAll.class);
     }*/
-    
-    public Contact_ListAll clearFields() throws Exception
-    {	
-    	buttonTrashDelete.click();
-    	buttonSave.click();
-    	return PageFactory.initElements(driver, Contact_ListAll.class);
-    }
-    
     
     //Need to be restructured...... Might be this method needs to be dropped 
     public Contact_ListAll selectCondition_VisitLandingPage (String condition, String placeholder1, String placeholder2, String placeholder3) throws Exception
