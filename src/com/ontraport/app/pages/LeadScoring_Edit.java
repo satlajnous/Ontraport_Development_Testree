@@ -114,7 +114,10 @@ public class LeadScoring_Edit extends AbstractPage
 	private List<WebElement> inputTextAreaCollection;
 
 	@FindBy (how = How.XPATH, using = "//div[@class='component-score-editor-degredation clearfix ussr-border-solid-tb ussr-texture-flat-light']//input")
-	private WebElement inputScore;
+	private WebElement inputScoreDegradation;
+	
+	
+	//div[@class='component-score-editor-degredation clearfix ussr-border-solid-tb ussr-texture-flat-light']//input
 	
 	//@FindBy(how = How.XPATH, using = "//input/@placeholder")
 	//@FindBy(how = How.XPATH, using = "//input/@placeholder")
@@ -149,6 +152,12 @@ public class LeadScoring_Edit extends AbstractPage
 	public LeadScoring_Edit assignLeadScoringvalue (String leadScoringPoints){
 		inputScoreValue.clear();
 		inputScoreValue.sendKeys(leadScoringPoints);
+		return PageFactory.initElements(driver, LeadScoring_Edit.class);
+	}
+	
+	public LeadScoring_Edit assignScoreDegradationValue (String leadScoringPoints){
+		inputScoreDegradation.clear();
+		inputScoreDegradation.sendKeys(leadScoringPoints);
 		return PageFactory.initElements(driver, LeadScoring_Edit.class);
 	}
 	
@@ -211,10 +220,15 @@ public class LeadScoring_Edit extends AbstractPage
 	public LeadScoring_Edit clearAllFields ()throws Exception{
 		buttonTrashDelete.click();
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-		inputScore.clear();
+		return PageFactory.initElements(driver, LeadScoring_Edit.class);
+	}
+	
+	public LeadScoring_Edit clearScoreDegradation ()throws Exception{
+		inputScoreDegradation.clear();
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		return PageFactory.initElements(driver, LeadScoring_Edit.class);
 	}
+	
 	
 	public LeadScoring_Edit selectValueFromDropDown (String placeholder, String valueToBeSelected) throws Exception{
 
@@ -376,7 +390,11 @@ public class LeadScoring_Edit extends AbstractPage
 	public boolean verifyScoreValue (String expectedValue){
 		return Common.verifyTextBoxValue(inputAssignScore, expectedValue);
 	}
-
+	
+	public boolean verifyScoreDegradationValue(String expectedValue){
+		return Common.verifyTextBoxValue(inputScoreDegradation, expectedValue);
+	}
+	
 	public Contact_ListAll clickBack() throws Exception{
 		buttonBack.click();
 		Thread.sleep(1000);

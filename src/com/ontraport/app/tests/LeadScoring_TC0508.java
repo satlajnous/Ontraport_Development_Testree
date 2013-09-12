@@ -9,39 +9,27 @@ import com.ontraport.app.parts.SiteMenu;
 import com.ontraport.app.tools.AbstractTest;
 import com.ontraport.app.tools.Common;
 
-public class LeadScoring_TC0477 extends AbstractTest {
+public class LeadScoring_TC0508 extends AbstractTest {
 	
 	@Test
-	public void testLeadScoring_IsSubscribedToAProduct() throws Exception {
+	public void testLeadScoring_Degradation_TryWholeNumbers() throws Exception {
 		LeadScoring_Edit leadScoringEditPgObj = navigateToLeadScoringPage ();
 	
-		leadScoringEditPgObj = leadScoringEditPgObj.clearAllFields();
+		leadScoringEditPgObj = leadScoringEditPgObj.clearScoreDegradation();
 		leadScoringEditPgObj.clickSaveButton();
 		Common.waitForPage(driver, 3);
 			
 		leadScoringEditPgObj = navigateToLeadScoringPage ();
-		leadScoringEditPgObj = leadScoringEditPgObj.clickAddNewCondition();	
-		
-		String[] placeHolders = {"Select Condition", "Select Subscription Product"};
-		String[] selectOptions = {"Is subscribed to product", "Any Subscription Product"};
 				
-		leadScoringEditPgObj = leadScoringEditPgObj.selectDropDownsBasedOnConditions (placeHolders, selectOptions);
-				
-		leadScoringEditPgObj = leadScoringEditPgObj.assignLeadScoringvalue("11");
+		leadScoringEditPgObj = leadScoringEditPgObj.assignScoreDegradationValue("10");
 		leadScoringEditPgObj.clickSaveButton();
 		Common.waitForPage(driver, 3);
 			
 		leadScoringEditPgObj = navigateToLeadScoringPage ();
-		
-		boolean b1 = leadScoringEditPgObj.verifyTheValueInDropDownBasedOnPlaceHolder ("Select Subscription Product", "Any Subscription Product");	
-		boolean b3 = leadScoringEditPgObj.verifyScoreValue("11");
-		
+			
+		boolean b1 = leadScoringEditPgObj.verifyScoreDegradationValue("10");	
 		System.out.println(b1);
-		System.out.println(b3);
-		
-		
-		Assert.assertTrue ("Subscription Product", b1);
-		Assert.assertTrue ("Score value", b3);
+		Assert.assertTrue ("Score value", b1);
 	}
 	
 	
@@ -57,5 +45,5 @@ public class LeadScoring_TC0477 extends AbstractTest {
 		Common.waitForPage(driver,3);
 		return leadScoringEditPgObj;
 	}
-	
+
 }
