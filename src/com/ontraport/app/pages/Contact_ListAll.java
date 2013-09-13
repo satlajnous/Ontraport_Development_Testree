@@ -44,9 +44,6 @@ public class Contact_ListAll extends AbstractPage {
 	@FindBy(how = How.XPATH, using = "//a//span[text()='Smart Forms']")
 	private WebElement linkSmartForms;
 	
-	@FindBy(how = How.XPATH, using = "//a//span[text()='Sequences']")
-	private WebElement linkSequences;
-	
 	/*
 	 * @FindBy(how = How.XPATH, using = "//a//span[text()='Settings']") private
 	 * WebElement linkSettings;
@@ -61,8 +58,6 @@ public class Contact_ListAll extends AbstractPage {
 	@FindBy(how = How.XPATH, using = "//a[@href='#!/account/view']")
 	private WebElement linkUserNavAdmin;
 	
-	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[1]/div[1]")
-    private WebElement displayPageHeader;
 	
 	public SalesReport_Settings navSalesReport() throws Exception {
 		try {
@@ -82,15 +77,6 @@ public class Contact_ListAll extends AbstractPage {
 			e.printStackTrace();
 		}
 		return PageFactory.initElements(driver, Rule_ListAll.class);
-	}
-	
-	public Sequence_ListAll navSequences() throws Exception {
-		try {
-			linkSequences.click();
-		} catch (NoSuchElementException e) {
-			e.printStackTrace();
-		}
-		return PageFactory.initElements(driver, Sequence_ListAll.class);
 	}
 
 	public Message_ListAll navMessages() throws Exception {
@@ -158,11 +144,5 @@ public class Contact_ListAll extends AbstractPage {
 		// deleteButton.click();
 		return PageFactory.initElements(driver, this.getClass());
 	}
-	
-	public String getTextHomePage () throws Exception{
-    	String pageHeader= displayPageHeader.getText().trim();
-    	System.out.println("Home Page Header: "+pageHeader);
-    	return pageHeader;
-    }
 
 }

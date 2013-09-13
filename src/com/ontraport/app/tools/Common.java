@@ -2,6 +2,8 @@ package com.ontraport.app.tools;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -77,6 +79,28 @@ public class Common
      */
     public static String getSelectedValueFromDropDown (WebElement selectWebElement){
     	Select selectBox = new Select(selectWebElement);
+    	String selectedOption = selectBox.getFirstSelectedOption().getText();
+    	return selectedOption;
+    }
+    
+    
+    /**
+     * Gets the first selected option from the drop down
+     * @param selectWebElement
+     * @return
+     */
+    public static String selecteValueFromDropDown (WebDriver driver, WebElement selectWebElement, String optionToBeSelected){
+    	Select selectBox = new Select(selectWebElement);
+    	List<WebElement> options = selectBox.getOptions();
+    	Iterator<WebElement> iterator = options.iterator();
+    	while (iterator.hasNext()) {
+    		WebElement eachOption = (WebElement) iterator.next();
+    		Common.scrollTillElementVisisble(driver, eachOption);
+    		String optiontxt = eachOption.getText().trim();
+    		if (optiontxt.equalsIgnoreCase(optionToBeSelected.trim())){
+    			eachOption.click();
+    		}
+		}
     	String selectedOption = selectBox.getFirstSelectedOption().getText();
     	return selectedOption;
     }
