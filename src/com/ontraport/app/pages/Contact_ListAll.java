@@ -58,6 +58,12 @@ public class Contact_ListAll extends AbstractPage {
 	@FindBy(how = How.XPATH, using = "//a[@href='#!/account/view']")
 	private WebElement linkUserNavAdmin;
 	
+	@FindBy(how = How.XPATH, using = "//a//span[text()='Sequences']")
+	private WebElement linkSequences;
+
+	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[1]/div[1]")
+     private WebElement displayPageHeader;
+
 	
 	public SalesReport_Settings navSalesReport() throws Exception {
 		try {
@@ -69,6 +75,16 @@ public class Contact_ListAll extends AbstractPage {
 		}
 		return PageFactory.initElements(driver, SalesReport_Settings.class);
 	}
+	
+		public Sequence_ListAll navSequences() throws Exception {
+				try {
+					linkSequences.click();
+				} catch (NoSuchElementException e) {
+					e.printStackTrace();
+				}
+				return PageFactory.initElements(driver, Sequence_ListAll.class);
+			}
+
 
 	public Rule_ListAll navRules() throws Exception {
 		try {
@@ -87,6 +103,7 @@ public class Contact_ListAll extends AbstractPage {
 		}
 		return PageFactory.initElements(driver, Message_ListAll.class);
 	}
+	
 	
 	public SmartForm_ListAll navSmartForms() throws Exception {
 		try {
@@ -128,6 +145,13 @@ public class Contact_ListAll extends AbstractPage {
 		}
 		return PageFactory.initElements(driver, Contact_Create.class);
 	}
+	
+		public String getTextHomePage () throws Exception{
+		   	String pageHeader= displayPageHeader.getText().trim();
+	    	System.out.println("Home Page Header: "+pageHeader);
+		    	return pageHeader;
+		   }
+
 
 	public AbstractPage selectContacts() throws InterruptedException {
 		Actions builder = new Actions(driver);
