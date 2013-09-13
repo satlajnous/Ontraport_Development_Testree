@@ -17,6 +17,7 @@ import com.ontraport.app.tools.AbstractSuite;
 	com.ontraport.app.tests.CreateRule_TC0032.class,
 	com.ontraport.app.tests.CreateRule_TC0033.class,
 	com.ontraport.app.tests.CreateRule_TC0034.class,
+	com.ontraport.app.tests.CreateRule_TC0042.class,
 })
 public class Rules_TestSuite extends AbstractSuite{}
 
