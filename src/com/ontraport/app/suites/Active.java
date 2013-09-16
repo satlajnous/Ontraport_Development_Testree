@@ -12,7 +12,7 @@ import com.ontraport.app.tools.AbstractSuite;
     // Suite begins in authenticated state on this page:
     // http://app.ontraport.com/#!/contact/listAll
     //com.ontraport.app.tests.Simple.class,
-    com.ontraport.app.tests.CreateContact.class,
+    /*com.ontraport.app.tests.CreateContact.class,
     com.ontraport.app.tests.AddGroup.class,
     com.ontraport.app.tests.AddRoundRobin.class,
     com.ontraport.app.tests.AddWeightedRandom.class,
@@ -27,7 +27,8 @@ import com.ontraport.app.tools.AbstractSuite;
     com.ontraport.app.tests.DeleteWeightedRandom.class,
     com.ontraport.app.tests.DeleteRoundRobin.class,
     com.ontraport.app.tests.DeleteGroup.class,
-    com.ontraport.app.tests.DeleteContact.class,
+    com.ontraport.app.tests.DeleteContact.class,*/
+	
 })
 public class Active extends AbstractSuite
 {
