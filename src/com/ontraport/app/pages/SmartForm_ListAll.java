@@ -7,6 +7,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import com.ontraport.app.tools.AbstractPage;
+import com.ontraport.app.tools.Common;
 
 public class SmartForm_ListAll extends AbstractPage
 {
@@ -22,9 +23,15 @@ public class SmartForm_ListAll extends AbstractPage
     }
     
     public SmartForm_Edit editSmartForm (String smartFormName) throws Exception{
-    	driver.findElement(By.xpath("//*[normalize-space(text())='" + (smartFormName) +"']")).click();
-    	Thread.sleep(3000);
-    	return PageFactory.initElements(driver, SmartForm_Edit.class);
-    }
+        WebElement linkElement = driver.findElement(By.xpath("//*[normalize-space(text())='" + (smartFormName) +"']"));
+        Common.scrollTillElementVisisble(driver, linkElement);
+        linkElement.click();
+        //driver.findElement(By.xpath("//*[normalize-space(text())='" + (smartFormName) +"']")).click();
+        Thread.sleep(3000);
+        return PageFactory.initElements(driver, SmartForm_Edit.class);
+     }
+
+    
+    
 
 }

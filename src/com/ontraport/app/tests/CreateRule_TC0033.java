@@ -9,6 +9,7 @@ import com.ontraport.app.pages.Contact_ListAll;
 import com.ontraport.app.pages.Rule_Create;
 import com.ontraport.app.pages.Rule_Edit;
 import com.ontraport.app.pages.Rule_ListAll;
+import com.ontraport.app.parts.SiteMenu;
 import com.ontraport.app.tools.AbstractTest;
 import com.ontraport.app.tools.Common;
 
@@ -42,26 +43,35 @@ public class CreateRule_TC0033 extends AbstractTest {
 		Common.waitForPage(driver, 3);
 		
 		boolean b2=ruleEdit.verifyRuleName(ruleName);
-		boolean b3 = ruleEdit.verifyTheValueInDropDownBasedOnPlaceHolder("Select Sequence","Any Sequence");
-		boolean b4 = ruleEdit.verifyThenDoThisText("Recharge all declined transactions");
+		boolean b3= ruleEdit.verifyWhenThisHappensText("Subscription to ");
+		boolean b4 = ruleEdit.verifyTheValueInDropDownBasedOnPlaceHolder("Select Sequence","Any Sequence");
+		boolean b5= ruleEdit.verifyWhenThisHappensText(" is unpaused");
+		boolean b6 = ruleEdit.verifyThenDoThisText("Recharge all declined transactions");
 		
 		System.out.println(b2);
 		System.out.println(b3);
 		System.out.println(b4);
+		System.out.println(b5);
+		System.out.println(b6);
 		
 		Assert.assertTrue("Rule Name", b2);
 		Assert.assertTrue("When This Happens", b3);
-		Assert.assertTrue("Then Do This", b4);
+		Assert.assertTrue("When This Happens", b4);
+		Assert.assertTrue("When This Happens", b5);
+		Assert.assertTrue("Then Do This", b6);
 
 	}
 
 	public Rule_ListAll navigateToRulesPage() throws Exception {
-		Contact_ListAll contact_ListAll = (Contact_ListAll) new Contact_ListAll()
-				.init();
-		Common.waitForPage(driver, 30);
+		SiteMenu siteMenu= (SiteMenu) new SiteMenu().init();
+		Common.waitForPage(driver, 3);
+		
+		Contact_ListAll contact_ListAll = siteMenu.contacts();
+		Common.waitForPage(driver, 3);
 		Rule_ListAll ruleListAll = contact_ListAll.navRules();
 		return ruleListAll;
 	}
+
 
 
 }

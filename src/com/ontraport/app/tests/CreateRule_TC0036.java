@@ -1,7 +1,6 @@
 package com.ontraport.app.tests;
 
 import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,30 +9,24 @@ import com.ontraport.app.pages.Contact_ListAll;
 import com.ontraport.app.pages.Rule_Create;
 import com.ontraport.app.pages.Rule_Edit;
 import com.ontraport.app.pages.Rule_ListAll;
-import com.ontraport.app.pages.Sequence_CreateDate;
-import com.ontraport.app.pages.Sequence_ListAll;
-import com.ontraport.app.pages.Sequence_TypeSelection;
 import com.ontraport.app.parts.SiteMenu;
 import com.ontraport.app.tools.AbstractTest;
 import com.ontraport.app.tools.Common;
 
-public class CreateRule_TC0028 extends AbstractTest {
+public class CreateRule_TC0036 extends AbstractTest {
 	String ruleName = "SelRule" + Calendar.getInstance().getTimeInMillis();
-	String seqName = "DateSeq" + Calendar.getInstance().getTimeInMillis();
 	
 	@Test
-	public void testCreateRule_WhenContactIsAddedToSeq_Date()
+	public void testCreateRule_ClicksTrackedLink()
 			throws Exception {
-		
-		createDateSeq(seqName);
 		Rule_ListAll ruleListAll = navigateToRulesPage();
 
 		Rule_Create ruleCreate = ruleListAll.ruleCreate();
 		Common.waitForPage(driver, 3);
 		ruleCreate= ruleCreate.inputRuleName(ruleName);
 		Common.waitForPage(driver, 2);
-		String[] placeHolders = { "Select Trigger...", "Select Sequence" };
-		String[] selectOptions = { "When Contact is added to Sequence", seqName};
+		String[] placeHolders = { "Select Trigger...", "Select Tracked Link" };
+		String[] selectOptions = { "Clicks tracked link", "Any Tracked Link" };
 
 		ruleCreate = ruleCreate.selectDropDownsBasedOnConditions(placeHolders,selectOptions);
 		Common.waitForPage(driver, 2);
@@ -50,8 +43,8 @@ public class CreateRule_TC0028 extends AbstractTest {
 		Common.waitForPage(driver, 3);
 		
 		boolean b2=ruleEdit.verifyRuleName(ruleName);
-		boolean b3 = ruleEdit.verifyWhenThisHappensText("When Contact is added to Sequence:");
-		boolean b4 = ruleEdit.verifyTheValueInDropDownBasedOnPlaceHolder("Select Sequence",seqName);
+		boolean b3= ruleEdit.verifyWhenThisHappensText("Clicks ");
+		boolean b4 = ruleEdit.verifyTheValueInDropDownBasedOnPlaceHolder("Select Tracked Link","Any Tracked Link");
 		boolean b5 = ruleEdit.verifyThenDoThisText("Recharge all declined transactions");
 		
 		System.out.println(b2);
@@ -76,19 +69,5 @@ public class CreateRule_TC0028 extends AbstractTest {
 		return ruleListAll;
 	}
 
-	
-	public void createDateSeq(String seqName) throws Exception{
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Contact_ListAll contactListAll = (Contact_ListAll) new Contact_ListAll()
-				.init();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Sequence_ListAll seqListAll = contactListAll.navSequences();
-		Sequence_TypeSelection seqType = seqListAll.clickNewSequence();
-		Sequence_CreateDate seqDate = seqType.clickCreateDateSeq();
-		seqListAll=seqDate.createDateSeq(seqName);
-		seqListAll.setHundredRecordsPerPage();
-		boolean condition = seqListAll.isElementPresent(seqName);
-		Assert.assertTrue(condition);
-	}
 
 }

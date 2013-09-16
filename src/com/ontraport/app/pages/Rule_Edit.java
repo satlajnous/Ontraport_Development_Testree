@@ -1,5 +1,6 @@
 package com.ontraport.app.pages;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -20,21 +21,19 @@ public class Rule_Edit extends AbstractPage {
 
 	@FindBy(how = How.XPATH, using = "//input[@type='text']")
 	private List<WebElement> inputTextBoxCollection;
-
-	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[4]/div[1]/div/div/div/div[1]/div[2]/div/div[1]/div/div[2]/div[2]/div[1]/span")
-	private WebElement displayWhenThisHappens;
-	
-	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[4]/div[1]/div/div/div/div[3]/div[2]/div/div[1]/div/div[2]/div[2]/div[1]/span")
-	private WebElement displayThenDoThis;
-	
-	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[4]/div[1]/div/div/div/div[1]/div[2]/div/div[1]/div/div[2]/div[2]/div[1]/span/span[1]")
-	private WebElement displayWhenThisHappensWithCondition;
-	
-	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[4]/div[1]/div/div/div/div[3]/div[2]/div/div[1]/div/div[2]/div[2]/div[1]/span/span[1]")
-	private WebElement displayThenDoThisWithCondition;
 	
 	@FindBy(how = How.XPATH, using = "//*[@id='ussr-chrome-panel-pane']/div[3]/div/div[3]/div/div/div/input")
 	private WebElement displayRuleName;
+	
+	@FindBy(how = How.XPATH, using = "//div[div[normalize-space(text())='WHEN THIS HAPPENS:']]//span[@class='sem-statement-text-wrapper']")
+	private List<WebElement> displayWhenThisHappensConditions;
+	
+	/*@FindBy(how = How.XPATH, using = "//div[div[normalize-space(text())='IF THIS IS TRUE:']]//span[@class='sem-statement-text-wrapper']")
+	private List<WebElement> displayWhenThisHappensConditions;*/
+	
+	@FindBy(how = How.XPATH, using = "//div[div[normalize-space(text())='THEN DO THIS:']]//span[@class='sem-statement-text-wrapper']")
+	private List<WebElement> displayThenDoThisConditions;
+	
 	
 	
 	public boolean verifyTheValueInDropDownBasedOnPlaceHolder(
@@ -71,34 +70,32 @@ public class Rule_Edit extends AbstractPage {
 						+ placeHolder);
 	}
 	
-	public boolean verifyWhenThisHappensText(String condition){
-		String whenThisHappens= displayWhenThisHappens.getText().trim();
-		if(whenThisHappens.equals(condition.trim())){
+	public boolean verifyWhenThisHappensText (String condition){
+		List<WebElement> list= displayWhenThisHappensConditions;
+		Iterator<WebElement> itr= list.iterator();
+		while (itr.hasNext()) {
+			WebElement eachParentElement = (WebElement) itr.next();
+		String whenThisHappensText= eachParentElement.getText().trim();
+		System.out.println("When This Happens Text: "+whenThisHappensText);
+		if(whenThisHappensText.equals(condition.trim())){
 			return true;
+		}
+		
 		}
 		return false;
 	}
 	
 	public boolean verifyThenDoThisText(String condition){
-		String thenDoThis= displayThenDoThis.getText().trim();
-		if(thenDoThis.equals(condition.trim())){
+		List<WebElement> list= displayThenDoThisConditions;
+		Iterator<WebElement> itr= list.iterator();
+		while (itr.hasNext()) {
+			WebElement eachParentElement = (WebElement) itr.next();
+		String thenDoThisText= eachParentElement.getText().trim();
+		System.out.println("Then Do This Text: "+thenDoThisText);
+		if(thenDoThisText.equals(condition.trim())){
 			return true;
 		}
-		return false;
-	}
-	
-	public boolean verifyWhenThisHappensTextWithCondition(String condition){
-		String whenThisHappens= displayWhenThisHappensWithCondition.getText().trim();
-		if(whenThisHappens.equals(condition.trim())){
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean verifyThenDoThisTextWithCondition(String condition){
-		String thenDoThis= displayThenDoThisWithCondition.getText().trim();
-		if(thenDoThis.equals(condition.trim())){
-			return true;
+		
 		}
 		return false;
 	}

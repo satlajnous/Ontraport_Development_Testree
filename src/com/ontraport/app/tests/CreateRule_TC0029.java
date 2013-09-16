@@ -9,6 +9,7 @@ import com.ontraport.app.pages.Contact_ListAll;
 import com.ontraport.app.pages.Rule_Create;
 import com.ontraport.app.pages.Rule_Edit;
 import com.ontraport.app.pages.Rule_ListAll;
+import com.ontraport.app.parts.SiteMenu;
 import com.ontraport.app.tools.AbstractTest;
 import com.ontraport.app.tools.Common;
 
@@ -42,7 +43,7 @@ public class CreateRule_TC0029 extends AbstractTest {
 		Common.waitForPage(driver, 3);
 		
 		boolean b2=ruleEdit.verifyRuleName(ruleName);
-		boolean b3 = ruleEdit.verifyWhenThisHappensTextWithCondition("When Contact is removed from Sequence:");
+		boolean b3 = ruleEdit.verifyWhenThisHappensText("When Contact is removed from Sequence:");
 		boolean b4 = ruleEdit.verifyTheValueInDropDownBasedOnPlaceHolder("Select Sequence","Any Sequence");
 		boolean b5 = ruleEdit.verifyThenDoThisText("Recharge all declined transactions");
 		
@@ -59,11 +60,14 @@ public class CreateRule_TC0029 extends AbstractTest {
 	}
 
 	public Rule_ListAll navigateToRulesPage() throws Exception {
-		Contact_ListAll contact_ListAll = (Contact_ListAll) new Contact_ListAll()
-				.init();
-		Common.waitForPage(driver, 30);
+		SiteMenu siteMenu= (SiteMenu) new SiteMenu().init();
+		Common.waitForPage(driver, 3);
+		
+		Contact_ListAll contact_ListAll = siteMenu.contacts();
+		Common.waitForPage(driver, 3);
 		Rule_ListAll ruleListAll = contact_ListAll.navRules();
 		return ruleListAll;
 	}
+
 
 }

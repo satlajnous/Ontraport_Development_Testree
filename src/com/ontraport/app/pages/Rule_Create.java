@@ -21,6 +21,53 @@ public class Rule_Create extends AbstractPage {
 
 	@FindBy(how = How.XPATH, using = "//button//span[text()='Save']")
 	private WebElement buttonSave;
+	
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='ussr-chrome-panel-pane']/div[3]/div/div[3]/div/div/div/input")
+	private WebElement nameInput;
+
+	@FindBy(how = How.XPATH, using = "//div[div[text()='WHEN THIS HAPPENS:']]//div[input[normalize-space(@placeholder)='Select Trigger...']]/descendant::button")
+	private WebElement whenDropDown;
+
+	@FindBy(how = How.XPATH, using = "//div[div[text()='IF THIS IS TRUE:']]//div[input[normalize-space(@placeholder)='Select Condition (optional)...']]/descendant::button")
+	private WebElement ifConditionalDropDown;
+
+	@FindBy(how = How.XPATH, using = "//div[div[text()='IF THIS IS TRUE:']]//div[input[normalize-space(@placeholder)='Select Field...']]/descendant::button")
+	private WebElement ifFieldDropDown;
+
+	@FindBy(how = How.XPATH, using = "//div[div[text()='IF THIS IS TRUE:']]//div[input[normalize-space(@placeholder)='Select Condition...']]/descendant::button")
+	private WebElement ifConditionalFieldDropDown;
+
+	@FindBy(how = How.XPATH, using = "//div[div[text()='WHEN THIS HAPPENS:']]//div[input[normalize-space(@placeholder)='Select Field...']]/descendant::button")
+	private WebElement whenFieldDropDown;
+
+	@FindBy(how = How.XPATH, using = "//div[div[text()='THEN DO THIS:']]//div[input[normalize-space(@placeholder)='Select Action...']]/descendant::button")
+	private WebElement thenDropDown;
+
+	@FindBy(how = How.XPATH, using = "//div[@class='ussr-component-helper-field-display-rule-editor']//div[.='First Name']")
+	private WebElement firstName;
+
+	@FindBy(how = How.XPATH, using = "//div[@class='ussr-component-helper-field-display-rule-editor']//div[.='Field is this value']")
+	private WebElement fieldEqualValue;
+
+	@FindBy(how = How.XPATH, using = "//ul[@class='ussr-component-drilldownselect-ul']//div[.='Contact is created']")
+	private WebElement contactCreated;
+
+	@FindBy(how = How.XPATH, using = "//ul[@class='ussr-component-drilldownselect-ul']//div[.='A Certain field is updated']")
+	private WebElement fieldIsUpdated;
+
+	@FindBy(how = How.XPATH, using = "//ul[@class='ussr-component-drilldownselect-ul']//div[.='Equal To']")
+	private WebElement equalTo;
+
+	@FindBy(how = How.XPATH, using = "//input[@placeholder='Enter Value...']")
+	private WebElement valueField;
+
+	@FindBy(how = How.XPATH, using = "//ul[@class='ussr-component-drilldownselect-ul']//div[.='Recharge all declined transactions']")
+	private WebElement rechargeDeclinedTransactions;
+
+	@FindBy(how = How.XPATH, using = "//button//span[text()='Save']")
+	private WebElement saveButton;
+	
 
 	/*
 	 * New WebElements
@@ -121,6 +168,43 @@ public Rule_Create selectDropDownsBasedOnConditions(String[] placeHolders, Strin
 	}
 	return ruleCreate;
 }
+
+public Rule_ListAll createRuleFirstNameisUpdated(String name)
+		throws Exception {
+	nameInput.click();
+	nameInput.clear();
+	nameInput.sendKeys(name);
+	whenDropDown.click();
+	fieldIsUpdated.click();
+	whenFieldDropDown.click();
+	firstName.click();
+	thenDropDown.click();
+	rechargeDeclinedTransactions.click();
+	saveButton.click();
+	return PageFactory.initElements(driver, Rule_ListAll.class);
+}
+
+public Rule_ListAll createRuleFeildEqualTo(String name) throws Exception {
+	nameInput.click();
+	nameInput.clear();
+	nameInput.sendKeys(name);
+	whenDropDown.click();
+	contactCreated.click();
+	ifConditionalDropDown.click();
+	fieldEqualValue.click();
+	ifFieldDropDown.click();
+	firstName.click();
+	ifConditionalFieldDropDown.click();
+	equalTo.click();
+	valueField.click();
+	valueField.clear();
+	valueField.sendKeys("Text Field");
+	thenDropDown.click();
+	rechargeDeclinedTransactions.click();
+	saveButton.click();
+	return PageFactory.initElements(driver, Rule_ListAll.class);
+}
+
 
 	
 }

@@ -57,11 +57,14 @@ public class CreateRule_TC0017 extends AbstractTest {
 	}
 
 	public Rule_ListAll navigateToRulesPage() throws Exception {
-		Contact_ListAll contact_ListAll = (Contact_ListAll) new Contact_ListAll()
-				.init();
-		Common.waitForPage(driver, 30);
+		SiteMenu siteMenu= (SiteMenu) new SiteMenu().init();
+		Common.waitForPage(driver, 3);
+		
+		Contact_ListAll contact_ListAll = siteMenu.contacts();
+		Common.waitForPage(driver, 3);
 		Rule_ListAll ruleListAll = contact_ListAll.navRules();
 		return ruleListAll;
 	}
+
 
 }
