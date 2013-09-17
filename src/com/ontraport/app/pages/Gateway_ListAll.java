@@ -54,15 +54,17 @@ public class Gateway_ListAll  extends AbstractPage
 	}*/
     
     
-    public Gateway_ListAll clickOnGateWayLink (String gatewayName){
+    public Gateway_Edit clickOnGateWayLink (String gatewayName){
 		try {
-			
+			WebElement linkElement = driver.findElement(By.xpath("//*[normalize-space(text())='" + (gatewayName) +"']"));
+	         Common.scrollTillElementVisisble(driver, linkElement);
+	         linkElement.click();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return PageFactory.initElements(driver, Gateway_ListAll.class);
+		return PageFactory.initElements(driver, Gateway_Edit.class);
 	}
     
     

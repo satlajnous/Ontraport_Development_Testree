@@ -9,6 +9,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import com.ontraport.app.tools.AbstractPage;
+import com.ontraport.app.tools.Common;
 
 public class Message_ListAll extends AbstractPage
 {
@@ -23,6 +24,7 @@ public class Message_ListAll extends AbstractPage
         
         try {
             linkToCreate.click();
+            Thread.sleep(1000);
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
@@ -30,7 +32,9 @@ public class Message_ListAll extends AbstractPage
     }
     
     public Message_Edit editMessage (String msgName) throws Exception{
-    	driver.findElement(By.xpath("//*[normalize-space(text())='" + (msgName) +"']")).click();
+    	 WebElement linkElement = driver.findElement(By.xpath("//*[normalize-space(text())='" + (msgName) +"']"));
+         Common.scrollTillElementVisisble(driver, linkElement);
+         linkElement.click();
     	Thread.sleep(1000);
     	return PageFactory.initElements(driver, Message_Edit.class);
     }

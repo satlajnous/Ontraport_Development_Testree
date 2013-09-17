@@ -45,7 +45,7 @@ public abstract class AbstractPage {
 
 	@FindBy(how = How.XPATH, using = "//div[label[text()='RECORDS']]/descendant::li/div[text()='100']")
 	protected WebElement inputSetRecordToHundred;
-
+	
 	@FindBy(how = How.XPATH, using = "//button//span[text()='Preview']")
 	private WebElement buttonPreview;
 
@@ -54,6 +54,13 @@ public abstract class AbstractPage {
 
 	@FindBy(how = How.XPATH, using = "//table[@class='ussr-table-striped']//tr//td[1]")
 	private List<WebElement> tableItemList;
+	
+	@FindBy(how = How.XPATH, using = "//a[@class='ussr-paginator-control-next']//span")
+	private WebElement clickNextPage;
+	
+	@FindBy(how = How.XPATH, using = "//div[@class='ussr-component-collection-meta-count']//span[@class='ussr-component-collection-meta-count-number ussr-theme-helper-color']")
+	private WebElement displayListCount;
+	
 
 	protected DialogBox dialogBox;
 	protected WebDriver driver;
@@ -261,7 +268,19 @@ public abstract class AbstractPage {
 	public void setHundredRecordsPerPage() {
 		try {
 			int sizeOfList = tableItemList.size();
-			if (sizeOfList > 6) {
+			System.out.println("List Size= "+sizeOfList);
+			String displayCount= displayListCount.getText().trim();
+			int count= Integer.parseInt(displayCount); //converts string to int value
+			System.out.println("Total Entries: "+count);
+			
+			if (sizeOfList > 6 && count <=100) {
+				buttonRecords.click();
+				Thread.sleep(2000);
+				inputSetRecordToHundred.click();
+				Thread.sleep(5000);
+			}else if(count>100){
+				clickNextPage.click();
+				Thread.sleep(2000);
 				buttonRecords.click();
 				Thread.sleep(2000);
 				inputSetRecordToHundred.click();
