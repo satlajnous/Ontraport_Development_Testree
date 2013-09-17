@@ -60,12 +60,16 @@ public class SmartForm_Edit extends AbstractPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='fe-style-selector-element-options']//div[input]/div")
     private List<WebElement> inputtParentElementsDiv;
 	
+	
+	
 	//*[@id='fe-style-selector-field-style']//div[input]/div
 	//*[@id='fe-style-selector-element-options']//div[select]/descendant::select
 	
 	@FindBy(how = How.XPATH, using = "//div[@id='fe-mode-design']/div[1]/div/ul/li/a[text()='Form Style']")
     private WebElement formStyletab;
-	
+		
+	@FindBy(how = How.XPATH, using = "//div[@id='fe-mode-design']//div/ul/li/a[text()='Background']")
+    private WebElement backgroundtab;
 	
 	//*[@id='fe-style-selector-field-style']//div[select]/div/following-sibling::select
 	
@@ -81,9 +85,11 @@ public class SmartForm_Edit extends AbstractPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='fe-style-selector-field-style']//div[input]/div")
     private List<WebElement> inputFormStylParentElementsDiv;
 	
+	/*Form Style tab xpaths start*/
+	
 	@FindBy(how = How.XPATH, using = "//div[@id='fe-style-selector-field-style']/div[div[text()='field style when unselected']]//div[select]/div")
     private WebElement selectFormStylFildStlyUnSelectDiv;
-	
+		
 	@FindBy(how = How.XPATH, using = "//div[@id='fe-style-selector-field-style']/div[div[text()='Input Text Style']]//div[select]/div")
     private List<WebElement> selectFormStylInputTextStylSelectDiv;
 	
@@ -102,11 +108,14 @@ public class SmartForm_Edit extends AbstractPage {
 	@FindBy(how = How.XPATH, using = "//div[@id='fe-style-selector-field-style']/div[div[text()='sub text style']]//div[input]/div")
     private List<WebElement> inputFormStylSubTextStyleSelectDiv;
 		
+	/*Form Style tab xpaths end */	
+	
+	/*Background tab xpaths start */ 
 		
+	@FindBy(how = How.XPATH, using = "//div[@id='fe-style-selector-background']/div[div[text()='Background']]//div[select]/div")
+    private List<WebElement> selectBackgroundBackgrndSelectDiv;
 	
-	
-	
-	
+	/*Background tab xpaths end */
 	
 	//div[@id='fe-style-selector-field-style']/div[div[text()='field spacing']]
 	
@@ -124,8 +133,15 @@ public class SmartForm_Edit extends AbstractPage {
 
 	
 	public SmartForm_Edit clickFormStyle() throws Exception {
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		formStyletab.click();
+		Thread.sleep(3000);
+		return PageFactory.initElements(driver, SmartForm_Edit.class);
+	}
+	
+	public SmartForm_Edit clickBackground() throws Exception {
+		//Thread.sleep(2000);
+		backgroundtab.click();
 		Thread.sleep(3000);
 		return PageFactory.initElements(driver, SmartForm_Edit.class);
 	}
@@ -143,6 +159,7 @@ public class SmartForm_Edit extends AbstractPage {
 	}
 	
 	public SmartForm_Edit clickSaveButton (){
+		Common.scrollTillElementVisisble(driver, buttonPageSave);
 		buttonPageSave.click();
 		try {
 			Thread.sleep(1000);
@@ -656,7 +673,7 @@ public class SmartForm_Edit extends AbstractPage {
 		return Common.verifySelectDropDownValue(selectElement, expectedValue);	
 	}
 
-	/* Form Style methods */
+	/* Form Style tab methods start*/
 	
 	public SmartForm_Edit setTextInFormStyleBasedOnLabel (String sectionName,String label, String value) throws Exception{
 		//WebElement inputTextElement = getInputTextElementBasedonLabel(label);
@@ -722,5 +739,70 @@ public class SmartForm_Edit extends AbstractPage {
 		return Common.verifySelectDropDownValue(selectElement, expectedValue);	
 	}
 
+	/*Form Style tab methods end*/ 
+	 
+	
+	/* Background tab methods start */
+	
+	public SmartForm_Edit setTextInBackgroundBasedOnLabel (String sectionName,String label, String value) throws Exception{
+		//WebElement inputTextElement = getInputTextElementBasedonLabel(label);
+		//WebElement inputTextElement = getInputElementBasedOnLabelDiv(inputFormStylParentElementsLabel,inputFormStylParentElementsDiv,label);
+		WebElement inputTextElement = null;
+		if (sectionName.equalsIgnoreCase("Background")){
+			//div[@id='fe-style-selector-field-style']//div[div[text()='label style']]
+			inputTextElement = getInputElementBasedOnLabelDiv(inputFormStylLabelStyleSelectDiv,label);
+		}
+		else if (sectionName.equalsIgnoreCase("Page Background")){
+			inputTextElement = getInputElementBasedOnLabelDiv(selectFormStylInputTextStylSelectDiv,label);
+		}
+		
+		inputTextElement.clear();
+		inputTextElement.sendKeys(value);
+		return PageFactory.initElements(driver, SmartForm_Edit.class);
+	}
+	
+	
+	public SmartForm_Edit setSelectInBackgroundBasedOnLabel (String sectionName, String label, String value) throws Exception{
+		//WebElement selectElement = getSelectElementBasedOnLabel(label);
+		//WebElement selectElement = getSelectElementBasedOnLabelDiv(selectFormStylParentElementsDiv,selectFormStylParentElementsLabel,label);
+		WebElement selectElement = null;
+		
+		if (sectionName.equalsIgnoreCase("Background")){
+			//div[@id='fe-style-selector-field-style']//div[div[text()='label style']]
+			selectElement = getSelectElementBasedOnLabelDiv(selectBackgroundBackgrndSelectDiv,label);
+		}
+		else if (sectionName.equalsIgnoreCase("Page Background")){
+			selectElement = getSelectElementBasedOnLabelDiv(selectFormStylInputTextStylSelectDiv,label);
+		}
+		
+		Common.selecteValueFromDropDown(driver, selectElement, value);
+		return PageFactory.initElements(driver, SmartForm_Edit.class);
+	}
+	
+	
+	public boolean verifyTextInBackgroundBasedOnLabel (String label, String expectedValue) throws Exception{
+		WebElement inputTextElement = getInputElementBasedOnLabelDiv(inputFormStylParentElementsLabel,inputFormStylParentElementsDiv,label);
+		return Common.verifyTextBoxValue(inputTextElement, expectedValue);	
+	}
+	
+	
+	public boolean verifySelectedOptionInBackgroundBasedOnLabel (String sectionName, String label, String expectedValue) throws Exception{
+		//WebElement selectElement = getSelectElementBasedOnLabel(label);
+		//WebElement selectElement = getSelectElementBasedOnLabelDiv(label);
+		WebElement selectElement = null;
+		if (sectionName.equalsIgnoreCase("Background")){
+			//div[@id='fe-style-selector-field-style']//div[div[text()='label style']]
+			selectElement = getSelectElementBasedOnLabelDiv(selectBackgroundBackgrndSelectDiv,label);
+		}
+		else if (sectionName.equalsIgnoreCase("Page Background")){
+			selectElement = getSelectElementBasedOnLabelDiv(selectFormStylInputTextStylSelectDiv,label);
+		}
+	//	selectElement = getSelectElementBasedOnLabelDiv(selectFormStylParentElementsDiv,selectFormStylParentElementsLabel,label);
+		
+		return Common.verifySelectDropDownValue(selectElement, expectedValue);	
+	}
+
+	
+	/* Background tab method end */ 
 	
 }
